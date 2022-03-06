@@ -1,0 +1,56 @@
+@import '../../../../lib/sass/styles.scss';
+
+.logo {
+  font-family: 'Lato', sans-serif;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  align-items: center;
+  width: fit-content;
+  height: 100%;
+  color: white;
+  font-size: $med-font;
+  text-decoration: none;
+
+  @include media('>=tablet-landscape', '<=desktop') {
+    font-size: $bigger-font;
+  }
+
+  @include media('>=desktop') {
+    font-size: $large-font;
+  }
+
+  @include media('>=tablet-landscape') {
+    &:hover {
+      cursor: pointer;
+      div {
+        color: $red-color;
+      }
+      .special-text {
+        color: white;
+      }
+    }
+  }
+
+  img {
+    width: 40px;
+
+    @include media('>=tablet-landscape', '<=desktop') {
+      width: 50px;
+    }
+
+    @include media('>=desktop') {
+      width: 50px;
+    }
+  }
+
+  .special-text {
+    color: $red-color;
+    transition: color 0.5s;
+  }
+
+  div {
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+}

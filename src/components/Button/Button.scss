@@ -1,0 +1,29 @@
+@import '../../lib/sass/styles.scss';
+
+.btn {
+  height: 40px;
+  width: 300px;
+  background-color: #d9251c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  filter: drop-shadow(-4px 4px 4px rgba(0, 0, 0, 0.25));
+
+  @include media('<=desktop') {
+    width: 200px;
+  }
+
+  &:hover {
+    background-color: white;
+    color: #d9251c;
+    cursor: pointer;
+    border: 3px #d9251c solid;
+    box-sizing: border-box;
+    transition: all 0.2s linear;
+  }
+}

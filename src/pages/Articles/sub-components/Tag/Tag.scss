@@ -1,0 +1,25 @@
+@import '../../../../lib/sass/styles.scss';
+
+.tag {
+  @include flexCenter(row);
+  color: white;
+  font-size: 16px;
+  height: 26px;
+  width: auto;
+  padding: 0 5px;
+  background-color: #5cb25d;
+  border: 1px #effded solid;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin: 0 10px 10px 0;
+
+  .cross-container {
+    margin-left: 5px;
+    width: 16px;
+    height: 16px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

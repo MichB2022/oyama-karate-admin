@@ -1,0 +1,52 @@
+@import './lib/sass/styles.scss';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+html {
+  width: 100%;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: $med-font;
+  background-color: #373234;
+  color: white;
+  position: absolute;
+  width: 100%;
+
+  @include media('>=tablet-portrait') {
+    font-size: $bigger-font;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  height: 100%;
+  margin: 0 auto;
+
+  @include media('>=tablet-portrait') {
+    width: 748px;
+  }
+
+  @include media('>=tablet-landscape') {
+    width: 980px;
+  }
+
+  @include media('>=desktop') {
+    width: 1340px;
+  }
+}
+
+.page-content {
+  min-height: 100vh;
+  z-index: 9999;
+  margin-top: 60px;
+
+  @include media('>=tablet-portrait') {
+    margin-top: 0;
+  }
+}

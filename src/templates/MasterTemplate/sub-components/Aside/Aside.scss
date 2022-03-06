@@ -1,0 +1,60 @@
+@import '../../../../lib/sass/styles.scss';
+
+aside {
+  background-color: #effded;
+
+  .container {
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .logo {
+    height: 100px;
+    color: #4c4948;
+
+    &:hover {
+      .special-text {
+        color: #4c4948;
+        transition: color 0.5s;
+      }
+    }
+  }
+
+  .admin-panel {
+    h2 {
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .belt {
+      width: 50px;
+      height: 1px;
+      background-color: #4c4948;
+      margin-bottom: 15px;
+    }
+
+    .aside-btn {
+      @include flexCenter(row);
+      justify-content: start;
+      padding-bottom: 10px;
+
+      &:hover {
+        color: #5cb25d;
+        cursor: pointer;
+
+        .aside-btn-icon {
+          path {
+            // fill: #5cb25d;
+            stroke: #5cb25d;
+          }
+        }
+      }
+    }
+  }
+}
+
+.aside-btn-icon {
+  margin-right: 15px;
+  font-size: 24px;
+}

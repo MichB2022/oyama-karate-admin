@@ -1,0 +1,72 @@
+@import '../../../../lib/sass/styles.scss';
+
+.article {
+  @include flexCenter(row);
+  padding: 10px;
+  width: 100%;
+  height: auto;
+  font-size: 16px;
+  line-height: 23px;
+  box-sizing: border-box;
+
+  &:nth-of-type(2n) {
+    background-color: #e3e3d6;
+  }
+
+  .title {
+    width: 23%;
+    margin-right: 2%;
+  }
+
+  .img,
+  .date,
+  .tags {
+    width: 19%;
+  }
+
+  .tags {
+    @include flexCenter(column);
+
+    p {
+      width: 100%;
+    }
+  }
+
+  .edit-or-remove {
+    @include flexCenter(column);
+    align-items: flex-start;
+    width: 19%;
+
+    div {
+      @include flexCenter(row);
+      justify-content: space-between;
+      width: 70px;
+
+      &:hover {
+        color: #5cb25d;
+      }
+    }
+
+    .remove-btn {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+// .popup-container {
+//   @include flexCenter(column);
+//   .popup-title {
+//     font-size: $med-font;
+//     text-align: center;
+//   }
+//   .popup-btns-container {
+//     @include flexCenter(row);
+//     justify-content: space-between;
+
+//     .popup-btn {
+//       background-color: #5cb25d;
+//     }
+//   }
+// }

@@ -1,0 +1,25 @@
+$red-color: #d9251c;
+$bg-color: rgb(55, 50, 52);
+$red-darker-color: rgba(217, 37, 28, 0.5);
+$darker-bg-color: #242424;
+$current-day-color: rgb(175, 233, 175);
+$tournament-color: rgb(170, 32, 32);
+$seminary-color: rgb(24, 24, 204);
+$camp-color: rgb(0, 177, 0);
+$events-font-color: white;
+$past-event: rgb(141, 141, 141);
+
+$large-font: 24px;
+$bigger-font: 22px;
+$big-font: 20px;
+$medder-font: 18px;
+$med-font: 16px;
+$small-font: 14px;
+$tiny-font: 12px;
+
+@mixin flexCenter($direction) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: $direction;
+}

@@ -1,21 +1,42 @@
 {
-  "name": "oyama-karate-eu-admin-panel",
+  "name": "oyama-karate-eu-app-admin-panel",
+  "homepage": "http://admin.oyama-karate.gancle-studio.pl",
   "version": "0.1.0",
+  "description": "React application for oyama-karate.eu",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.3",
+    "@react-google-maps/api": "^2.7.0",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "aos": "^2.3.4",
+    "axios": "^0.26.0",
+    "dotenv": "^16.0.0",
+    "history": "^5.3.0",
+    "html-react-parser": "^1.4.6",
+    "include-media": "^1.4.10",
+    "quill": "^1.3.7",
+    "quill-image-uploader": "^1.2.2",
     "react": "^17.0.2",
+    "react-collapsible": "^2.8.4",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "react-quill": "^1.3.5",
+    "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
-    "web-vitals": "^2.1.4"
+    "react-scroll-parallax": "^2.4.3",
+    "react-super-responsive-table": "^5.2.0",
+    "react-transition-group": "^4.4.2",
+    "reactjs-popup": "^2.0.5",
+    "sass": "^1.45.2",
+    "web-vitals": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "reinstall": "rm -rf ./node_modules/ && npm install"
   },
   "eslintConfig": {
     "extends": [

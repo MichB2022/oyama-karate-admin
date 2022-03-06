@@ -1,0 +1,8 @@
+@import '../../lib/sass/styles.scss';
+
+.page-content {
+  display: grid;
+  grid-template: 100% / 300px calc(100% - 300px);
+  color: #4c4948;
+  font-size: 18px;
+}
