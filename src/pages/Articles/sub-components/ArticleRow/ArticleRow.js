@@ -5,7 +5,7 @@ import { CgFileRemove } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
 import 'reactjs-popup/dist/index.css';
 import ModalPopup from '../../../../components/ModalPopup/ModalPopup';
-import { API_URL } from '../../../../configs/api';
+import { API_UPLOADS_URL, API_URL } from '../../../../configs/api';
 import { httpRequest } from '../../../../utils/requests';
 import './ArticleRow.scss';
 
@@ -27,10 +27,7 @@ const ArticleRow = ({ article }) => {
     <div className='article'>
       <div className='title'>{title}</div>
       <div className='img'>
-        <a
-          href={`http://api.gancle-studio.pl/uploads/photos/articles/${bigImgUrl}`}
-          target={'_blank'}
-        >
+        <a href={`${API_UPLOADS_URL}/articles/${bigImgUrl}`} target={'_blank'}>
           LINK
         </a>
       </div>

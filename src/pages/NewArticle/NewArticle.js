@@ -23,6 +23,8 @@ const NewArticle = () => {
   const [tags, setTags] = useState([]);
   const [isAnyFieldEmpty, setIsAnyFieldEmpty] = useState(false);
   const [articleText, setArticleText] = useState(null);
+  const [bigImg, setBigImg] = useState([{ file: { path: '' }, alt: '' }]);
+  const [smallImg, setSmallImg] = useState([{ file: { path: '' }, alt: '' }]);
 
   useEffect(async () => {
     const categoriesResult = await axios.get(`${API_URL}/categories`);
@@ -32,6 +34,18 @@ const NewArticle = () => {
       const articleResult = await axios.get(`${API_URL}/articles/${id}`);
       setArticle({ ...articleResult.data.data });
       setArticleText(articleResult.data.data.text);
+      setBigImg([
+        {
+          imgUrl: articleResult.data.data.bigImgUrl,
+          alt: articleResult.data.data.bigImgAlt
+        }
+      ]);
+      setSmallImg([
+        {
+          imgUrl: articleResult.data.data.smallImgUrl,
+          alt: articleResult.data.data.smallImgAlt
+        }
+      ]);
       setTags(
         articleResult.data.data.tags.map((el, index) => {
           return {
@@ -46,34 +60,58 @@ const NewArticle = () => {
     setLouder(false);
   }, []);
 
+  useEffect(() => {
+    const bigImgAlt = document.getElementById('bigImgAlt');
+    if (bigImgAlt) {
+      bigImgAlt.value = bigImg[0].alt;
+    }
+  }, [bigImg]);
+
+  useEffect(() => {
+    const smallImgAlt = document.getElementById('smallImgAlt');
+    if (smallImgAlt) {
+      smallImgAlt.value = smallImg[0].alt;
+    }
+  }, [smallImg]);
+
   const createArticleContent = async () => {
     const title = document.getElementById('title');
     const categoryId = document.getElementById('categoryId');
     const shortenDesc = document.getElementById('shortenDesc');
-    const bigImgUrl = document.getElementById('bigImgUrl');
     const bigImgAlt = document.getElementById('bigImgAlt');
-    const smallImgUrl = document.getElementById('smallImgUrl');
     const smallImgAlt = document.getElementById('smallImgAlt');
 
     if (
       title?.value !== '' &&
       categoryId?.value !== '' &&
       articleText?.value !== '' &&
-      shortenDesc?.value !== '' &&
-      bigImgAlt?.value !== '' &&
-      smallImgAlt?.value
+      shortenDesc?.value !== ''
     ) {
-      const data = {
-        title: title ? title?.value : '',
-        category_id: categoryId ? categoryId?.value : '',
-        text: articleText ? articleText : '',
-        shortenDesc: shortenDesc ? shortenDesc?.value : '',
-        bigImgUrl: bigImgUrl ? bigImgUrl?.value : '',
-        bigImgAlt: bigImgAlt ? bigImgAlt?.value : '',
-        smallImgUrl: smallImgUrl ? smallImgUrl?.value : '',
-        smallImgAlt: smallImgAlt ? smallImgAlt?.value : '',
-        tags: tags
-      };
+      const data = new FormData();
+      data.append('title', title ? title.value : '');
+      data.append('category_id', categoryId ? categoryId.value : '');
+      data.append('text', articleText ? articleText : '');
+      data.append('shortenDesc', shortenDesc ? shortenDesc.value : '');
+      if (bigImg[0].imgUrl) {
+        data.append('bigImgUrl', bigImg[0].imgUrl);
+      } else if (bigImg[0].img) {
+        data.append('bigImg', bigImg[0].img);
+      } else {
+        data.append('bigImgUrl', '');
+      }
+      if (smallImg[0].imgUrl) {
+        data.append('smallImgUrl', smallImg[0].imgUrl);
+      } else if (smallImg[0].img) {
+        data.append('smallImg', smallImg[0].img);
+      } else {
+        data.append('smallImgUrl', '');
+      }
+      data.append('bigImgAlt', bigImgAlt ? bigImgAlt.value : '');
+      data.append('smallImgAlt', smallImgAlt ? smallImgAlt.value : '');
+      data.append(
+        'tags',
+        tags.map((tag) => (tag = tag.name))
+      );
       if (id) {
         await httpRequest('PUT', `/articles/${id}`, data);
       } else {
@@ -104,23 +142,33 @@ const NewArticle = () => {
               value={article?.title || ''}
               id='title'
             />
-            <InputFile label={'duze zdjęcie:'} className={''} id='bigImgUrl' />
+            <InputFile
+              label={'duze zdjęcie:'}
+              className={''}
+              id='bigImgUrl'
+              value={bigImg[0].img}
+              setImgState={setBigImg}
+              imgState={bigImg}
+            />
 
             <Input
               label={'alt do duzego zdjęcia:'}
               className={''}
-              value={article?.bigImgAlt || ''}
+              value={bigImg[0].alt}
               id='bigImgAlt'
             />
             <InputFile
               label={'małe zdjęcie:'}
               className={''}
               id='smallImgUrl'
+              value={smallImg[0].img}
+              setImgState={setSmallImg}
+              imgState={smallImg}
             />
             <Input
               label={'alt do małego zdjęcia:'}
               className={''}
-              value={article.smallImgAlt || ''}
+              value={smallImg[0].alt}
               id='smallImgAlt'
             />
 
