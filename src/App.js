@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MasterTemplate from './templates/MasterTemplate/MasterTemplate';
 import Articles from './pages/Articles/Articles';
 import NewArticle from './pages/NewArticle/NewArticle';
+import Sections from './pages/Sections/Sections';
+import NewSection from './pages/NewSection/NewSection';
 
 function App() {
   return (
@@ -15,9 +17,12 @@ function App() {
           <Route path='/admin/aktualnosci/nowy' element={<NewArticle />} />
           <Route path='/admin/aktualnosci/nowy/:id' element={<NewArticle />} />
 
-          {/* <Route path='/admin/sekcje' element={<Sections />} />
+          {/* SECTIONS */}
+          <Route path='/admin/sekcje' element={<Sections />} />
           <Route path='/admin/sekcje/dodaj' element={<NewSection />} />
           <Route path='/admin/sekcje/dodaj/:id' element={<NewSection />} />
+
+          {/* 
           
           <Route path='/admin/przedszkolaki' element={<Preschoolers />} />
           <Route path='/admin/kalendarz' element={<Calendar />} />

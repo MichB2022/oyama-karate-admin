@@ -1,0 +1,322 @@
+@import '../../lib/sass/styles.scss';
+
+.main-container {
+  @include flexCenter(column);
+  max-width: 1200px;
+  margin: 0 50px;
+
+  .header-container {
+    @include flexCenter(row);
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 30px;
+
+    p {
+      text-align: center;
+      font-size: 22px;
+    }
+
+    .back-btn {
+      text-align: center;
+      color: white;
+      background-color: #5cb25d;
+
+      &:hover {
+        background-color: white;
+        color: #5cb25d;
+        border: 3px #5cb25d solid;
+      }
+    }
+  }
+
+  h4 {
+    font-family: Jost;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    width: 100%;
+    margin: 20px 0;
+  }
+
+  .groups-container {
+    @include flexCenter(row);
+    justify-content: start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 100%;
+    height: auto;
+
+    .group {
+      width: 400px;
+      min-height: 300px;
+      background-color: #effded;
+      color: white;
+      border-radius: 5px;
+      border: 1px #5cb25d solid;
+      box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+      margin: 0 50px 50px 0;
+      position: relative;
+
+      .days-container {
+        @include flexCenter(row);
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin: 0 30px;
+        box-sizing: border-box;
+        height: auto;
+
+        .new-day-container {
+          width: 100%;
+          height: auto;
+        }
+
+        .day {
+          @include flexCenter(row);
+          justify-content: space-between;
+          width: 100%;
+          height: 65px;
+          background-color: transparent;
+          color: white;
+          margin-bottom: 20px;
+          border: 1px solid #5cb25d;
+          border-radius: 5px;
+          box-sizing: border-box;
+
+          .day-info {
+            @include flexCenter(column);
+            justify-content: space-between;
+            align-items: flex-start;
+            height: 100%;
+            // width: 190px;
+
+            .week-day-container,
+            .hours-container {
+              @include flexCenter(row);
+              justify-content: space-between;
+              width: 100%;
+
+              input {
+                width: 100px;
+              }
+            }
+
+            .week-day-container {
+              margin-top: 8px;
+            }
+
+            .hours-container {
+              margin-bottom: 8px;
+            }
+
+            .new-week-day,
+            .new-hours {
+              color: #4c4948;
+              padding-left: 10px;
+              font-size: 16px;
+            }
+
+            .week-day,
+            .hours {
+              width: auto;
+              color: #4c4948;
+              padding-left: 10px;
+              font-size: 16px;
+            }
+
+            .week-day {
+              padding-top: 10px;
+            }
+
+            .hours {
+              padding-bottom: 10px;
+            }
+          }
+
+          .add-day-info {
+            width: 190px;
+          }
+
+          .save-btn {
+            @include flexCenter(row);
+            background-color: #4c4948;
+            border-radius: 5px;
+            border: 3px #4c4948 solid;
+            width: 100px;
+            height: 40px;
+            margin-right: 10px;
+            color: white;
+            box-sizing: border-box;
+
+            &:hover {
+              cursor: pointer;
+              color: #4c4948;
+              background-color: transparent;
+              transition: 0.2s all linear;
+            }
+          }
+
+          .buttons-container {
+            @include flexCenter(column);
+            justify-content: space-between;
+            align-items: flex-end;
+            height: 100%;
+
+            .edit,
+            .remove {
+              @include flexCenter(row);
+              justify-content: space-between;
+
+              &:hover {
+                cursor: pointer;
+                transform: scale(1.05);
+                transition: 0.2s all linear;
+              }
+
+              p {
+                width: auto;
+                color: #4c4948;
+                padding-left: 10px;
+              }
+
+              .day-icon {
+                margin: 0 10px;
+              }
+            }
+
+            .edit {
+              padding-top: 10px;
+            }
+
+            .remove {
+              padding-bottom: 10px;
+            }
+          }
+        }
+      }
+
+      .group-name {
+        width: 100%;
+        color: #4c4948;
+        font-size: 24px;
+        font-weight: 600;
+        padding: 30px 0;
+        text-align: center;
+        letter-spacing: 0.2px;
+      }
+
+      .cross-container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 26px;
+        color: #4c4948;
+        margin: 5px;
+        width: 26px;
+        height: 26px;
+
+        &:hover {
+          cursor: pointer;
+          // transform: scale(1.2);
+          transform: rotate(180deg);
+          transition: all linear 0.4s;
+        }
+      }
+    }
+  }
+
+  .buttons {
+    @include flexCenter(row);
+    justify-content: space-between;
+    width: 100%;
+    margin: 50px 0;
+
+    .green-btns {
+      @include flexCenter(row);
+      justify-content: space-between;
+      width: 60%;
+
+      @include media('>=desktop') {
+        width: 55%;
+      }
+
+      button {
+        background-color: #5cb25d;
+        margin-right: 10px;
+
+        &:hover {
+          background-color: white;
+          color: #5cb25d;
+          cursor: pointer;
+          border: 3px #5cb25d solid;
+          box-sizing: border-box;
+          transition: all 0.2s linear;
+        }
+      }
+    }
+  }
+}
+
+.new-day {
+  @include flexCenter(row);
+  justify-content: space-between;
+  width: 100%;
+  height: 65px;
+  background-color: transparent;
+  color: white;
+  margin-bottom: 20px;
+  border: 1px solid #5cb25d;
+  border-radius: 5px;
+  box-sizing: border-box;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.2s all linear;
+  }
+
+  h5 {
+    width: auto;
+    color: #4c4948;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    margin-left: 35px;
+  }
+
+  .new-day-icon {
+    margin-right: 35px;
+  }
+}
+
+.add-section-tile {
+  @include flexCenter(column);
+  justify-content: start;
+  width: 400px;
+  height: 300px;
+  background-color: transparent;
+  border: 1px #5cb25d solid;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 0 50px 50px 0;
+
+  h2 {
+    margin: 0 auto;
+    margin-top: 50px;
+    width: auto;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+  }
+
+  .plus {
+    margin: 0 auto;
+    margin-top: 25px;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.3);
+      transition: transform linear 0.2s;
+    }
+  }
+}

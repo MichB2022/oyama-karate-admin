@@ -70,7 +70,8 @@ const InputFile = ({
   className,
   maxFileNumber,
   imgState,
-  setImgState
+  setImgState,
+  filesRootFolder
 }) => {
   const [files, setFiles] = useState([]);
 
@@ -116,7 +117,7 @@ const InputFile = ({
       <div style={thumb}>
         <div style={thumbInner}>
           <img
-            src={`${API_UPLOADS_URL}/articles/${imgState[0].imgUrl}`}
+            src={`${API_UPLOADS_URL}/${filesRootFolder}/${imgState[0].imgUrl}`}
             style={img}
           />
         </div>

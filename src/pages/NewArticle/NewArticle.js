@@ -131,7 +131,7 @@ const NewArticle = () => {
         <main>
           <div className='new-article-container'>
             <h2 className='header-container header-container-margin'>
-              <p>Nowy Artykuł</p>
+              <p>{id ? 'Edycja Artykułu' : 'Nowy Artykuł'}</p>
               <Link to='/admin/aktualnosci'>
                 <Button text={'POWRÓT (bez zapisu)'} className='back-btn' />
               </Link>
@@ -143,37 +143,39 @@ const NewArticle = () => {
               id='title'
             />
             <InputFile
-              label={'duze zdjęcie:'}
+              label={'Duże zdjęcie:'}
               className={''}
               id='bigImgUrl'
               value={bigImg[0].img}
               setImgState={setBigImg}
               imgState={bigImg}
+              filesRootFolder={'articles'}
             />
 
             <Input
-              label={'alt do duzego zdjęcia:'}
+              label={'Alt do dużego zdjęcia:'}
               className={''}
               value={bigImg[0].alt}
               id='bigImgAlt'
             />
             <InputFile
-              label={'małe zdjęcie:'}
+              label={'Małe zdjęcie:'}
               className={''}
               id='smallImgUrl'
               value={smallImg[0].img}
               setImgState={setSmallImg}
               imgState={smallImg}
+              filesRootFolder={'articles'}
             />
             <Input
-              label={'alt do małego zdjęcia:'}
+              label={'Alt do małego zdjęcia:'}
               className={''}
               value={smallImg[0].alt}
               id='smallImgAlt'
             />
 
             <form className='input-container'>
-              <label htmlFor='sort'>wybierz kategorie artykulu: </label>
+              <label htmlFor='sort'>Wybierz kategorie artykulu: </label>
               <select
                 name='sorting'
                 className='select'

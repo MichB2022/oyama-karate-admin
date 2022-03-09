@@ -47,7 +47,7 @@ export const formats = [
   'bullet',
   'indent',
   'link',
-  'image',
+  // 'image',
   'color'
 ];
 
@@ -92,7 +92,6 @@ export const QuillToolbar = () => (
     </span>
     <span className='ql-formats'>
       <button className='ql-link' />
-      <button className='ql-image' />
     </span>
     <span className='ql-formats'>
       <button className='ql-clean' />
