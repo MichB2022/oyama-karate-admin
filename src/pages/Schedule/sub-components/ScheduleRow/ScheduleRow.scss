@@ -1,0 +1,31 @@
+@import '../../../../lib/sass/styles.scss';
+.buttons {
+  @include flexCenter(row);
+  justify-content: space-between;
+  width: 100%;
+  margin: 50px 0;
+
+  .green-btns {
+    @include flexCenter(row);
+    justify-content: space-between;
+    width: 60%;
+
+    @include media('>=desktop') {
+      width: 55%;
+    }
+
+    button {
+      background-color: #5cb25d;
+      margin-right: 10px;
+
+      &:hover {
+        background-color: white;
+        color: #5cb25d;
+        cursor: pointer;
+        border: 3px #5cb25d solid;
+        box-sizing: border-box;
+        transition: all 0.2s linear;
+      }
+    }
+  }
+}
