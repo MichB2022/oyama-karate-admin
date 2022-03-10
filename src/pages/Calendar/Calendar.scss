@@ -1,0 +1,148 @@
+@import '../../lib/sass/styles.scss';
+
+.admin-calendar-container {
+  @include flexCenter(column);
+  max-width: 1200px;
+  margin: 0 50px;
+  box-sizing: border-box;
+
+  .header-container-margin {
+    margin-bottom: 30px;
+  }
+
+  .header-container {
+    @include flexCenter(row);
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 30px;
+
+    p {
+      text-align: center;
+      font-size: 22px;
+    }
+
+    .back-btn {
+      text-align: center;
+      color: white;
+      background-color: #5cb25d;
+
+      &:hover {
+        background-color: white;
+        color: #5cb25d;
+        border: 3px #5cb25d solid;
+      }
+    }
+  }
+
+  .inputs-container {
+    @include flexCenter(row);
+    justify-content: start;
+    flex-wrap: wrap;
+
+    .input-container {
+      @include flexCenter(row);
+      justify-content: space-between;
+      width: 360px;
+      height: 44px;
+      padding: 0 40px 20px 0;
+
+      input,
+      select {
+        width: 200px;
+        height: 100%;
+        filter: drop-shadow(-2px 2px 4px rgba(0, 0, 0, 0.25));
+        border: none;
+        border-radius: 5px;
+        padding: 0;
+
+        option::placeholder {
+          padding: 10px;
+        }
+
+        &::placeholder {
+          padding-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+.articles {
+  width: 100%;
+
+  .headers {
+    @include flexCenter(row);
+    height: 40px;
+    padding: 0 10px;
+    box-sizing: border-box;
+
+    h3 {
+      width: 19%;
+
+      &:first-of-type {
+        width: 25%;
+      }
+    }
+
+    .new-article {
+      @include flexCenter(row);
+      justify-content: space-around;
+      width: 19%;
+      background-color: #5cb25d;
+      height: 100%;
+      color: white;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: white;
+        color: #5cb25d;
+        cursor: pointer;
+        border: 3px #5cb25d solid;
+        box-sizing: border-box;
+        transition: all 0.2s linear;
+      }
+    }
+  }
+  .belt {
+    width: 100%;
+    height: 1px;
+    background-color: #4c4948;
+    margin-top: 15px;
+  }
+
+  .main-articles-container {
+    width: 100%;
+  }
+
+  .pagination-container {
+    @include flexCenter(row);
+    width: 100%;
+    justify-content: end;
+    padding-top: 5px;
+
+    .pagination-content {
+      @include flexCenter(row);
+      width: auto;
+
+      .pagination-arrow {
+        &:hover {
+          opacity: 0.5;
+          cursor: pointer;
+          transition: all 0.2s linear;
+        }
+      }
+
+      .pagination {
+        @include flexCenter(row);
+        padding: 0 16px;
+
+        .pagination-tile {
+          @include flexCenter(row);
+          height: 32px;
+          width: 32px;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}

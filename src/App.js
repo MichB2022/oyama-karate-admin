@@ -5,6 +5,9 @@ import Articles from './pages/Articles/Articles';
 import NewArticle from './pages/NewArticle/NewArticle';
 import Sections from './pages/Sections/Sections';
 import NewSection from './pages/NewSection/NewSection';
+import Preschoolers from './pages/Preschoolers/Preschoolers';
+import Calendar from './pages/Calendar/Calendar';
+import NewEvent from './pages/Calendar/subCoponents/NewEvent/NewEvent';
 
 function App() {
   return (
@@ -22,10 +25,22 @@ function App() {
           <Route path='/admin/sekcje/dodaj' element={<NewSection />} />
           <Route path='/admin/sekcje/dodaj/:id' element={<NewSection />} />
 
-          {/* 
-          
+          {/* PRESCHOOLERS */}
           <Route path='/admin/przedszkolaki' element={<Preschoolers />} />
+
+          {/* CALENDAR */}
           <Route path='/admin/kalendarz' element={<Calendar />} />
+          <Route
+            path='/admin/kalendarz/nowe-wydarzenie'
+            element={<NewEvent />}
+          />
+          <Route
+            path='/admin/kalendarz/nowe-wydarzenie/:id'
+            element={<NewEvent />}
+          />
+
+          {/*  
+          
           <Route path='/admin/strony-informacyjne' element={<InfoPages />} />
           <Route
             path='/admin/strony-informacyjne/dodaj'
@@ -35,14 +50,7 @@ function App() {
             path='/admin/strony-informacyjne/dodaj/:id'
             element={<NewInfoPage />}
           />
-          <Route
-            path='/admin/kalendarz/nowe-wydarzenie'
-            element={<NewEvent />}
-          />
-          <Route
-            path='/admin/kalendarz/nowe-wydarzenie/:id'
-            element={<NewEvent />}
-          />
+          
           <Route path='/admin/harmonogram' element={<Schedule />} />
           <Route path='/admin/harmonogram/dodaj' element={<NewGroup />} />
           <Route
