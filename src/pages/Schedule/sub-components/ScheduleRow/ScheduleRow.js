@@ -2,18 +2,16 @@ import React, { useState } from 'react';
 import { BiEdit } from 'react-icons/bi';
 import { CgFileRemove } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
-import ModalPopup from '../../ModalPopup/ModalPopup';
+import ModalPopup from '../../../../components/ModalPopup/ModalPopup';
+import { httpRequest } from '../../../../utils/requests';
 import './ScheduleRow.scss';
-import axios from 'axios';
-
-const API_URL = 'http://api.gancle-studio.pl/api/v1';
 
 const ScheduleRow = ({ group, groupId }) => {
   const { place, address, schedule, instructor, helpers, id } = group;
   const [deleted, setDeleted] = useState(false);
 
   const handleRemoveClick = async () => {
-    await axios.delete(`${API_URL}/schedule/row/${id}`);
+    await httpRequest('DELETE', `/schedule/row/${id}`);
     setDeleted(true);
   };
 
@@ -25,9 +23,9 @@ const ScheduleRow = ({ group, groupId }) => {
     <div className='article'>
       <div className='date'>{place}</div>
       <div className='date'>{address}</div>
-      <div className='date'>{schedule}</div>
-      <div className='date'>{instructor}</div>
-      <div className='date'>{helpers}</div>
+      <div className='date' dangerouslySetInnerHTML={{ __html: schedule }} />
+      <div className='date' dangerouslySetInnerHTML={{ __html: instructor }} />
+      <div className='date' dangerouslySetInnerHTML={{ __html: helpers }} />
       <div className='edit-or-remove'>
         <Link to={`/admin/harmonogram/dodaj/wiersz/${groupId}/${id}`}>
           <div>

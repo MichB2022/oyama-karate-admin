@@ -8,6 +8,9 @@ import NewSection from './pages/NewSection/NewSection';
 import Preschoolers from './pages/Preschoolers/Preschoolers';
 import Calendar from './pages/Calendar/Calendar';
 import NewEvent from './pages/Calendar/subCoponents/NewEvent/NewEvent';
+import Schedule from './pages/Schedule/Schedule';
+import NewGroup from './pages/Schedule/sub-components/NewGroup/NewGroup';
+import NewScheduleRow from './pages/Schedule/sub-components/NewScheduleRow/NewScheduleRow';
 
 function App() {
   return (
@@ -39,18 +42,7 @@ function App() {
             element={<NewEvent />}
           />
 
-          {/*  
-          
-          <Route path='/admin/strony-informacyjne' element={<InfoPages />} />
-          <Route
-            path='/admin/strony-informacyjne/dodaj'
-            element={<NewInfoPage />}
-          />
-          <Route
-            path='/admin/strony-informacyjne/dodaj/:id'
-            element={<NewInfoPage />}
-          />
-          
+          {/* SCHEDULE */}
           <Route path='/admin/harmonogram' element={<Schedule />} />
           <Route path='/admin/harmonogram/dodaj' element={<NewGroup />} />
           <Route
@@ -65,6 +57,19 @@ function App() {
             path='/admin/harmonogram/dodaj/wiersz/:groupId/:id'
             element={<NewScheduleRow />}
           />
+
+          {/*  
+          
+          <Route path='/admin/strony-informacyjne' element={<InfoPages />} />
+          <Route
+            path='/admin/strony-informacyjne/dodaj'
+            element={<NewInfoPage />}
+          />
+          <Route
+            path='/admin/strony-informacyjne/dodaj/:id'
+            element={<NewInfoPage />}
+          />
+          
           <Route
             path='/admin/instruktorzy-i-pomocnicy'
             element={<InstructorsAndHelpers />}

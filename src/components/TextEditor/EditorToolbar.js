@@ -52,8 +52,8 @@ export const formats = [
 ];
 
 // Quill Toolbar component
-export const QuillToolbar = () => (
-  <div id='toolbar'>
+export const QuillToolbar = ({ toolbarId }) => (
+  <div id={toolbarId ? toolbarId : 'toolbar'}>
     <span className='ql-formats'>
       <select className='ql-size' defaultValue='medium'>
         <option value='extra-small'>Size 1</option>

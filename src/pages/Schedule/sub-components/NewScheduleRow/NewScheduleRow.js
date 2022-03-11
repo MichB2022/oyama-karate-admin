@@ -1,26 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import Button from '../../Button/Button';
-import Input from '../../Input/Input';
-import InputTextArea from '../../InputTextArea/InputTextArea';
-import './NewScheduleRow.scss';
-import Loader from '../../Loader/Loader';
-import axios from 'axios';
+import Button from '../../../../components/Button/Button';
+import Input from '../../../../components/Input/Input';
+import Loader from '../../../../components/Loader/Loader';
+import TextEditor from '../../../../components/TextEditor/TextEditor';
+import { httpRequest, redirect } from '../../../../utils/requests';
 
-const API_URL = 'http://api.gancle-studio.pl/api/v1';
+import './NewScheduleRow.scss';
 
 const NewScheduleRow = ({ isNewRow }) => {
   const { id, groupId } = useParams();
   const [louder, setLouder] = useState(true);
   const [currentGroup, setCurrentGroup] = useState({});
+  const [scheduleText, setScheduleText] = useState('');
+  const [instructorText, setInstructorText] = useState('');
+  const [helpersText, setHelpersText] = useState('');
 
   useEffect(async () => {
     if (id) {
-      const group = await axios.get(`${API_URL}/schedule/row/single/${id}`);
+      const group = await httpRequest('GET', `/schedule/row/single/${id}`);
       setCurrentGroup(group.data.data);
+      setScheduleText(group.data.data.schedule);
+      setInstructorText(group.data.data.instructor);
+      setHelpersText(group.data.data.helpers);
     }
     setLouder(false);
   }, []);
+
+  const handleSaveBtn = async () => {
+    const place = document.getElementById('place');
+    const address = document.getElementById('address');
+
+    const url = id ? `/schedule/row/${id}` : `/schedule/row/add`;
+
+    const data = {
+      scheduleId: groupId,
+      place: place?.value,
+      schedule: scheduleText || '',
+      instructor: instructorText || '',
+      helpers: helpersText || '',
+      address: address?.value
+    };
+
+    await httpRequest('POST', url, data);
+    redirect(`/admin/harmonogram/dodaj/${groupId}`);
+  };
 
   return (
     <>
@@ -41,65 +65,37 @@ const NewScheduleRow = ({ isNewRow }) => {
               id='place'
             />
             <Input
-              label={'Dzień:'}
-              className={''}
-              value={isNewRow ? '' : currentGroup?.schedule}
-              id='day'
-            />
-            <Input
               label={'Adres:'}
               className={''}
               value={isNewRow ? '' : currentGroup?.address}
               id='address'
             />
-            <InputTextArea
-              label={'Instruktor:'}
-              className={''}
-              value={isNewRow ? '' : currentGroup?.instructor}
-              id='instructors'
+
+            <TextEditor
+              text={scheduleText || ''}
+              setText={setScheduleText}
+              placeholder={'Podaj grafik...'}
+              label={'Grafik: '}
+              toolbarId={'schedule'}
             />
-            <InputTextArea
-              label={'Pomocnicy:'}
-              className={''}
-              value={isNewRow ? '' : currentGroup?.helpers}
-              id='helpers'
+            <TextEditor
+              text={instructorText || ''}
+              setText={setInstructorText}
+              placeholder={'Podaj informacje o instruktorze...'}
+              label={'Instruktor: '}
+              toolbarId={'instructor'}
+            />
+            <TextEditor
+              text={helpersText || ''}
+              setText={setHelpersText}
+              placeholder={'Podaj informacje o pomocnikach...'}
+              label={'Pomocnicy: '}
+              toolbarId={'helpers'}
             />
 
             <div className='buttons'>
               <div className='green-btns'>
-                <Button
-                  text={'ZAPISZ ZMIANY'}
-                  onclick={async () => {
-                    const place = document.getElementById('place');
-                    const day = document.getElementById('day');
-                    const address = document.getElementById('address');
-                    const instructors = document.getElementById('instructors');
-                    const helpers = document.getElementById('helpers');
-
-                    const url = id
-                      ? `${API_URL}/schedule/row/${id}`
-                      : `${API_URL}/schedule/row/add`;
-
-                    await axios.post(url, {
-                      scheduleId: groupId,
-                      place: place?.value,
-                      schedule: day?.value,
-                      instructor: instructors?.value,
-                      helpers: helpers?.value,
-                      address: address?.value
-                    });
-                    window.location.href = `/admin/harmonogram/dodaj/${groupId}`;
-
-                    // console.log(groupId, id, {
-                    //   sheduleId: groupId,
-                    //   place: place?.value,
-                    //   day: day?.value,
-                    //   instructor: instructors?.value,
-                    //   helpers: helpers?.value,
-                    //   address: address?.value
-                    // });
-                  }}
-                />
+                <Button text={'ZAPISZ ZMIANY'} onclick={handleSaveBtn} />
                 <Link to={`/admin/harmonogram/dodaj/${groupId}`}>
                   <Button text={'POWRÓT (bez zapisu)'} />
                 </Link>

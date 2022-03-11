@@ -1,31 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Input from '../Input/Input';
-import PlusIcon from '../Sections/icons/PlusIcon';
-import SectionTile from '../Sections/SectionTile/SectionTile';
 import './Schedule.scss';
-import ScheduleTile from './ScheduleTile';
-import axios from 'axios';
-import Loader from '../Loader/Loader';
-
-const API_URL = 'http://api.gancle-studio.pl/api/v1';
+import { httpRequest, redirect } from '../../utils/requests';
+import Loader from '../../components/Loader/Loader';
+import ScheduleTile from './sub-components/ScheduleTile/ScheduleTile';
+import PlusIcon from '../../components/Icons/PlusIcon';
 
 const Schedule = () => {
   const [louder, setlouder] = useState(true);
   const [scheduleData, setscheduleData] = useState({});
 
   useEffect(async () => {
-    const scheduleResponse = await axios.get(`${API_URL}/schedule/names`);
+    const scheduleResponse = await httpRequest('GET', '/schedule/names');
     setscheduleData({ schedule: scheduleResponse.data.data });
     setlouder(false);
   }, []);
 
   const handleAddBtn = async () => {
     const groupName = document.getElementById('new-group');
-    const group = await axios.post(`${API_URL}/schedule/add`, {
+    const group = await httpRequest('POST', '/schedule/add', {
       name: groupName?.value
     });
-    window.location.href = `/admin/harmonogram/dodaj/${group.data.data.id}`;
+    redirect(`/admin/harmonogram/dodaj/${group.data.data.id}`);
   };
 
   return (
