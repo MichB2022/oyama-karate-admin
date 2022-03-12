@@ -13,41 +13,20 @@ import './HomePage.scss';
 const HomePage = () => {
   const [img, setImg] = useState([{ file: { path: '' }, alt: '' }]);
   const [isAnyFieldEmpty, setIsAnyFieldEmpty] = useState(false);
-  const [homePageData, setHomePageData] = useState({
-    text: 'strona glowna lol',
-    imgUrl: 'olol',
-    imgAlt: 'altlol dolol zdjlol'
-  });
+  const [homePageData, setHomePageData] = useState({});
   const [louder, setLouder] = useState(false);
-
-  // useEffect(async () => {
-  //   const data = await httpRequest('GET', '/homepage');
-  //   setHomePageData(data.data.data);
-  //   setLouder(false);
-  // }, []);
 
   const getElById = (id) => {
     return document.getElementById(`${id}`);
   };
-
-  // const handleSaveBtn = () => {
-  //   const text = getElById('text');
-  //   const imgUrl = getElById('imgUrl');
-  //   const imgAlt = getElById('imgAlt');
-  //   // axios.post(`${API_URL}/homepage`, {
-  //   //   text: text,
-  //   //   imgUrl: imgUrl,
-  //   //   imgAlt: imgAlt
-  //   // });
-  // };
 
   useEffect(async () => {
     const data = await httpRequest('GET', '/homepage');
     setHomePageData(data.data.data);
     setImg([
       {
-        imgUrl: homePageData.imgUrl,
-        alt: homePageData.imgAlt
+        imgUrl: data.data.data.imgUrl,
+        alt: data.data.data.imgAlt
       }
     ]);
     setLouder(false);
@@ -62,20 +41,21 @@ const HomePage = () => {
 
   const handleSaveBtn = async () => {
     const text = getElById('text');
-    const imgUrl = getElById('imgUrl');
     const imgAlt = getElById('imgAlt');
 
-    if (text?.value !== '' && imgUrl?.value !== '' && imgAlt?.value !== '') {
+    if (text?.value !== '' && imgAlt?.value !== '') {
       const data = new FormData();
       data.append('text', text ? text.value : '');
-      data.append('imgUrl', imgUrl ? imgUrl.value : '');
       data.append('imgAlt', imgAlt ? imgAlt.value : '');
-      if (imgUrl) {
-        data.append('imgUrl', imgUrl);
+      if (img[0].imgUrl) {
+        data.append('imgUrl', img[0].imgUrl);
+      } else if (img[0].img) {
+        data.append('img', img[0].img);
       } else {
         data.append('imgUrl', '');
       }
-      data.append('imgAlt', imgAlt ? imgAlt.value : '');
+
+      await httpRequest('POST', `/homepage/${homePageData.id}`, data);
     } else {
       setIsAnyFieldEmpty(true);
     }
@@ -126,10 +106,7 @@ const HomePage = () => {
                 <InfoModalPopup
                   trigger={
                     <div className='green-btns'>
-                      <Button
-                        text={'ZAPISZ ZMIANY'}
-                        onclick={handleSaveBtn()}
-                      />
+                      <Button text={'ZAPISZ ZMIANY'} onclick={handleSaveBtn} />
                     </div>
                   }
                   text='Zmiany zostały zapisane'

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Button from '../../../../components/Button/Button';
+import InfoModalPopup from '../../../../components/InfoModalPopup/InfoModalPopup';
 import Input from '../../../../components/Input/Input';
 import Loader from '../../../../components/Loader/Loader';
 import TextEditor from '../../../../components/TextEditor/TextEditor';
@@ -94,12 +95,19 @@ const NewScheduleRow = ({ isNewRow }) => {
             />
 
             <div className='buttons'>
-              <div className='green-btns'>
-                <Button text={'ZAPISZ ZMIANY'} onclick={handleSaveBtn} />
-                <Link to={`/admin/harmonogram/dodaj/${groupId}`}>
-                  <Button text={'POWRÓT (bez zapisu)'} />
-                </Link>
-              </div>
+              {
+                <InfoModalPopup
+                  trigger={
+                    <div className='green-btns'>
+                      <Button text={'ZAPISZ ZMIANY'} onclick={handleSaveBtn} />
+                      <Link to={`/admin/harmonogram/dodaj/${groupId}`}>
+                        <Button text={'POWRÓT (bez zapisu)'} />
+                      </Link>
+                    </div>
+                  }
+                  text='Zmiany zostały zapisane'
+                />
+              }
             </div>
           </div>
         </main>

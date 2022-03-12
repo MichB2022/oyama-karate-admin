@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import PlusIcon from '../../components/Icons/PlusIcon';
+import InfoModalPopup from '../../components/InfoModalPopup/InfoModalPopup';
 import Input from '../../components/Input/Input';
 import InputFile from '../../components/InputFile/InputFile';
 import InputTextArea from '../../components/InputTextArea/InputTextArea';
@@ -199,12 +200,23 @@ const NewSection = () => {
             />
 
             <div className='buttons'>
-              <div className='green-btns'>
-                <Button text={'ZAPISZ ZMIANY'} onclick={handleSaveButton} />
-                <Link to='/admin/sekcje'>
-                  <Button text={'POWRÓT (bez zapisu)'} />
-                </Link>
-              </div>
+              {
+                <InfoModalPopup
+                  trigger={
+                    <div className='green-btns'>
+                      <Button
+                        text={'ZAPISZ ZMIANY'}
+                        onclick={handleSaveButton}
+                      />
+                      <Link to='/admin/sekcje'>
+                        <Button text={'POWRÓT (bez zapisu)'} />
+                      </Link>
+                    </div>
+                  }
+                  text='Zmiany zostały zapisane'
+                />
+              }
+
               <ModalPopup
                 trigger={
                   id && (

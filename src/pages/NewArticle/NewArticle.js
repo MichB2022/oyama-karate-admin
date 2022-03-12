@@ -12,6 +12,7 @@ import Tag from '../Articles/sub-components/Tag/Tag';
 import { httpRequest, redirect } from '../../utils/requests';
 import InputTextArea from '../../components/InputTextArea/InputTextArea';
 import 'react-quill/dist/quill.core.css';
+import InfoModalPopup from '../../components/InfoModalPopup/InfoModalPopup';
 
 const NewArticle = () => {
   const [ReloadVar, setReloadVar] = useState(false);
@@ -243,15 +244,22 @@ const NewArticle = () => {
             )}
 
             <div className='buttons'>
-              <div className='green-btns'>
-                <Button
-                  text={'ZAPISZ ZMIANY'}
-                  onclick={() => createArticleContent()}
+              {
+                <InfoModalPopup
+                  trigger={
+                    <div className='green-btns'>
+                      <Button
+                        text={'ZAPISZ ZMIANY'}
+                        onclick={() => createArticleContent()}
+                      />
+                      <Link to='/admin/aktualnosci'>
+                        <Button text={'POWRÓT (bez zapisu)'} />
+                      </Link>
+                    </div>
+                  }
+                  text='Zmiany zostały zapisane'
                 />
-                <Link to='/admin/aktualnosci'>
-                  <Button text={'POWRÓT (bez zapisu)'} />
-                </Link>
-              </div>
+              }
             </div>
 
             <section className='preview'>

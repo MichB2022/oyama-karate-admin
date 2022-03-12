@@ -22,8 +22,9 @@ function App() {
     <Router>
       <MasterTemplate>
         <Routes>
-          {/* ARTICLES */}
           <Route path='/admin' element={<HomePage />} />
+
+          {/* ARTICLES */}
           <Route path='/admin/aktualnosci' element={<Articles />} />
           <Route path='/admin/aktualnosci/nowy' element={<NewArticle />} />
           <Route path='/admin/aktualnosci/nowy/:id' element={<NewArticle />} />

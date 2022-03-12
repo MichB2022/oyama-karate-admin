@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import Button from '../../components/Button/Button';
+import InfoModalPopup from '../../components/InfoModalPopup/InfoModalPopup';
 import Input from '../../components/Input/Input';
 import InputFile from '../../components/InputFile/InputFile';
 import Loader from '../../components/Loader/Loader';
@@ -175,9 +176,16 @@ const Preschoolers = () => {
             />
 
             <div className='buttons'>
-              <div className='green-btns'>
-                <Button text={'ZAPISZ ZMIANY'} onclick={handleSaveBtn} />
-              </div>
+              {
+                <InfoModalPopup
+                  trigger={
+                    <div className='green-btns'>
+                      <Button text={'ZAPISZ ZMIANY'} onclick={handleSaveBtn} />
+                    </div>
+                  }
+                  text='Zmiany zostały zapisane'
+                />
+              }
             </div>
           </div>
         </main>

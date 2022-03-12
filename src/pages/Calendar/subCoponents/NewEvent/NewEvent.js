@@ -7,6 +7,7 @@ import Button from '../../../../components/Button/Button';
 import InputFile from '../../../../components/InputFile/InputFile';
 import Input from '../../../../components/Input/Input';
 import TextEditor from '../../../../components/TextEditor/TextEditor';
+import InfoModalPopup from '../../../../components/InfoModalPopup/InfoModalPopup';
 
 const NewEvent = () => {
   const { id } = useParams();
@@ -155,12 +156,19 @@ const NewEvent = () => {
             />
 
             <div className='buttons'>
-              <div className='green-btns'>
-                <Button text={'ZAPISZ ZMIANY'} onclick={handleSaveBtn} />
-                <Link to='/admin/kalendarz'>
-                  <Button text={'POWRÓT (bez zapisu)'} />
-                </Link>
-              </div>
+              {
+                <InfoModalPopup
+                  trigger={
+                    <div className='green-btns'>
+                      <Button text={'ZAPISZ ZMIANY'} onclick={handleSaveBtn} />
+                      <Link to='/admin/kalendarz'>
+                        <Button text={'POWRÓT (bez zapisu)'} />
+                      </Link>
+                    </div>
+                  }
+                  text='Zmiany zostały zapisane'
+                />
+              }
             </div>
           </div>
         </main>

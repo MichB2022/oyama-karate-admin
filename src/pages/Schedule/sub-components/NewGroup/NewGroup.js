@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import Button from '../../../../components/Button/Button';
 import LeftArrow from '../../../../components/Icons/LeftArrow';
 import RightArrow from '../../../../components/Icons/RightArrow';
+import InfoModalPopup from '../../../../components/InfoModalPopup/InfoModalPopup';
 import Loader from '../../../../components/Loader/Loader';
 import ModalPopup from '../../../../components/ModalPopup/ModalPopup';
 import { httpRequest, redirect } from '../../../../utils/requests';
@@ -60,11 +61,19 @@ const NewGroup = () => {
               </div>
 
               <div className='buttons'>
-                <div className='green-btns'>
-                  <Link to='/admin/harmonogram'>
-                    <Button text={'POWRÓT'} />
-                  </Link>
-                </div>
+                {
+                  <InfoModalPopup
+                    trigger={
+                      <div className='green-btns'>
+                        <Link to='/admin/harmonogram'>
+                          <Button text={'POWRÓT'} />
+                        </Link>
+                      </div>
+                    }
+                    text='Zmiany zostały zapisane'
+                  />
+                }
+
                 {
                   <ModalPopup
                     trigger={
