@@ -1,0 +1,33 @@
+.section-tile {
+  width: 200px;
+  height: 300px;
+  background-color: #effded;
+  border: 1px #5cb25d solid;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 0 0 50px 50px;
+
+  .place {
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 150px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+  }
+
+  .more-info {
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 150px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 26px;
+    text-decoration: underline;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

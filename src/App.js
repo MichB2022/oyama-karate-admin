@@ -11,6 +11,10 @@ import NewEvent from './pages/Calendar/subCoponents/NewEvent/NewEvent';
 import Schedule from './pages/Schedule/Schedule';
 import NewGroup from './pages/Schedule/sub-components/NewGroup/NewGroup';
 import NewScheduleRow from './pages/Schedule/sub-components/NewScheduleRow/NewScheduleRow';
+import InstructorsAndHelpers from './pages/InstructorsAndHeplers/InstructorsAndHelpers';
+import NewPerson from './pages/InstructorsAndHeplers/sub-components/NewPerson/NewPerson';
+import InfoPages from './pages/InfoPages/InfoPages';
+import NewInfoPage from './pages/InfoPages/sub-components/NewInfoPage/NewInfoPage';
 
 function App() {
   return (
@@ -58,18 +62,7 @@ function App() {
             element={<NewScheduleRow />}
           />
 
-          {/*  
-          
-          <Route path='/admin/strony-informacyjne' element={<InfoPages />} />
-          <Route
-            path='/admin/strony-informacyjne/dodaj'
-            element={<NewInfoPage />}
-          />
-          <Route
-            path='/admin/strony-informacyjne/dodaj/:id'
-            element={<NewInfoPage />}
-          />
-          
+          {/* INSTRUCTORS AND HELPERS */}
           <Route
             path='/admin/instruktorzy-i-pomocnicy'
             element={<InstructorsAndHelpers />}
@@ -81,9 +74,19 @@ function App() {
           <Route
             path='/admin/instruktorzy-i-pomocnicy/dodaj/:id'
             element={<NewPerson />}
-          /> */}
+          />
+
+          {/* INFO PAGES */}
+          <Route path='/admin/strony-informacyjne' element={<InfoPages />} />
+          <Route
+            path='/admin/strony-informacyjne/dodaj'
+            element={<NewInfoPage />}
+          />
+          <Route
+            path='/admin/strony-informacyjne/dodaj/:id'
+            element={<NewInfoPage />}
+          />
         </Routes>
-        {/* <NewSection /> */}
       </MasterTemplate>
     </Router>
   );

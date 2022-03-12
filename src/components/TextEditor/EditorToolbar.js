@@ -1,35 +1,10 @@
 import React from 'react';
 import { Quill } from 'react-quill';
 
-// Undo and redo functions for Custom Toolbar
-function undoChange() {
-  this.quill.history.undo();
-}
-
-function redoChange() {
-  this.quill.history.redo();
-}
-
 // Add sizes to whitelist and register them
 const Size = Quill.import('formats/size');
 Size.whitelist = ['extra-small', 'small', 'medium', 'large'];
 Quill.register(Size, true);
-
-// Modules object for setting up the Quill editor
-export const modules = {
-  toolbar: {
-    container: '#toolbar',
-    handlers: {
-      undo: undoChange,
-      redo: redoChange
-    }
-  },
-  history: {
-    delay: 500,
-    maxStack: 100,
-    userOnly: true
-  }
-};
 
 // Formats objects for setting up the Quill editor
 export const formats = [
@@ -47,12 +22,12 @@ export const formats = [
   'bullet',
   'indent',
   'link',
-  // 'image',
+  'image',
   'color'
 ];
 
 // Quill Toolbar component
-export const QuillToolbar = ({ toolbarId }) => (
+export const QuillToolbar = ({ toolbarId, imageUpload }) => (
   <div id={toolbarId ? toolbarId : 'toolbar'}>
     <span className='ql-formats'>
       <select className='ql-size' defaultValue='medium'>
@@ -92,6 +67,7 @@ export const QuillToolbar = ({ toolbarId }) => (
     </span>
     <span className='ql-formats'>
       <button className='ql-link' />
+      {imageUpload && <button className='ql-image' />}
     </span>
     <span className='ql-formats'>
       <button className='ql-clean' />
