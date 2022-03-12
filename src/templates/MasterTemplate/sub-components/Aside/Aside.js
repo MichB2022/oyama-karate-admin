@@ -34,10 +34,12 @@ const Aside = () => {
           <h2>PANEL ADMINISTRACYJNY</h2>
           <div className='belt'></div>
 
-          <div className='dashboard aside-btn'>
-            <DashboardIcon className='aside-btn-icon' />
-            Dashboard
-          </div>
+          <Link to='/admin'>
+            <div className='dashboard aside-btn'>
+              <DashboardIcon className='aside-btn-icon' />
+              Strona główna
+            </div>
+          </Link>
 
           <Link to='/admin/aktualnosci'>
             <div className='news aside-btn'>

@@ -1,0 +1,67 @@
+@import '../../lib/sass/styles.scss';
+
+.home-page-container {
+  @include flexCenter(column);
+  max-width: 1200px;
+  margin: 0 50px;
+  box-sizing: border-box;
+
+  .header-container-margin {
+    margin-bottom: 30px;
+  }
+
+  .header-container {
+    @include flexCenter(row);
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 30px;
+
+    p {
+      text-align: center;
+      font-size: 22px;
+    }
+
+    .back-btn {
+      text-align: center;
+      color: white;
+      background-color: #5cb25d;
+
+      &:hover {
+        background-color: white;
+        color: #5cb25d;
+        border: 3px #5cb25d solid;
+      }
+    }
+  }
+
+  .buttons {
+    @include flexCenter(row);
+    justify-content: space-between;
+    width: 100%;
+    margin: 50px 0;
+
+    .green-btns {
+      @include flexCenter(row);
+      justify-content: space-between;
+      width: 60%;
+
+      @include media('>=desktop') {
+        width: 55%;
+      }
+
+      button {
+        background-color: #5cb25d;
+        margin-right: 10px;
+
+        &:hover {
+          background-color: white;
+          color: #5cb25d;
+          cursor: pointer;
+          border: 3px #5cb25d solid;
+          box-sizing: border-box;
+          transition: all 0.2s linear;
+        }
+      }
+    }
+  }
+}

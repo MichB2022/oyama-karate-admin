@@ -11,6 +11,7 @@ import NewEvent from './pages/Calendar/subCoponents/NewEvent/NewEvent';
 import Schedule from './pages/Schedule/Schedule';
 import NewGroup from './pages/Schedule/sub-components/NewGroup/NewGroup';
 import NewScheduleRow from './pages/Schedule/sub-components/NewScheduleRow/NewScheduleRow';
+import HomePage from './pages/HomePage/HomePage';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       <MasterTemplate>
         <Routes>
           {/* ARTICLES */}
-          <Route path='/admin' element={<Articles />} />
+          <Route path='/admin' element={<HomePage />} />
           <Route path='/admin/aktualnosci' element={<Articles />} />
           <Route path='/admin/aktualnosci/nowy' element={<NewArticle />} />
           <Route path='/admin/aktualnosci/nowy/:id' element={<NewArticle />} />
