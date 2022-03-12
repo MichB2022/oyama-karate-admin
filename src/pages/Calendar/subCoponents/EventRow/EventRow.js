@@ -5,10 +5,10 @@ import { CgFileRemove } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
 import { httpRequest } from '../../../../utils/requests';
 import ModalPopup from '../../../../components/ModalPopup/ModalPopup';
-import { API_URL } from '../../../../configs/api';
+import { API_UPLOADS_URL, API_URL } from '../../../../configs/api';
 
 const EventRow = ({ event }) => {
-  const { id, title, startDate, endDate } = event;
+  const { id, title, startDate, endDate, imgUrl } = event;
   const [deleted, setDeleted] = useState(false);
 
   const handleRemoveClick = async () => {
@@ -25,7 +25,9 @@ const EventRow = ({ event }) => {
     <div className='article'>
       <div className='title'>{title}</div>
       <div className='img'>
-        <a href={`${API_URL}/uploads/photos/calendar`}>LINK</a>
+        <a href={`${API_UPLOADS_URL}/calendar/${imgUrl}`} target={'_blank'}>
+          LINK
+        </a>
       </div>
       <div className='date'>{startDate.slice(0, 10)}</div>
       <div className='date'>{endDate.slice(0, 10)}</div>
