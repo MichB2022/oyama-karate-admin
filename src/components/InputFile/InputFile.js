@@ -71,7 +71,8 @@ const InputFile = ({
   maxFileNumber,
   imgState,
   setImgState,
-  filesRootFolder
+  filesRootFolder,
+  withoutThumbs
 }) => {
   const [files, setFiles] = useState([]);
 
@@ -152,7 +153,7 @@ const InputFile = ({
           <p>Przeciągnij zdjęcie lub kliknij, aby dodać</p>
           <em>(Tylko pliki typu *.jpeg lub *.png lub *.webp)</em>
         </div>
-        <aside style={thumbsContainer}>{thumbs}</aside>
+        {!withoutThumbs && <aside style={thumbsContainer}>{thumbs}</aside>}
       </div>
     </div>
   );

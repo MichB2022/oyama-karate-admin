@@ -90,10 +90,19 @@ const Aside = () => {
             </div>
           </Link>
 
-          <div className='galeries aside-btn'>
-            <GaleriesIcon className='aside-btn-icon' />
-            Galerie
-          </div>
+          <Link to='/admin/galerie'>
+            <div className='galeries aside-btn'>
+              <GaleriesIcon className='aside-btn-icon' />
+              Galerie
+            </div>
+          </Link>
+
+          <Link to='/admin/motywacja'>
+            <div className='galeries aside-btn'>
+              <GaleriesIcon className='aside-btn-icon' />
+              Galeria - Facebook
+            </div>
+          </Link>
         </div>
       </div>
     </aside>

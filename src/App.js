@@ -16,6 +16,9 @@ import InstructorsAndHelpers from './pages/InstructorsAndHeplers/InstructorsAndH
 import NewPerson from './pages/InstructorsAndHeplers/sub-components/NewPerson/NewPerson';
 import InfoPages from './pages/InfoPages/InfoPages';
 import NewInfoPage from './pages/InfoPages/sub-components/NewInfoPage/NewInfoPage';
+import Galery from './pages/Galery/Galery';
+import NewGalery from './pages/Galery/sub-components/NewGalery/NewGalery';
+import Motivation from './pages/Motivation/Motivation';
 
 function App() {
   return (
@@ -88,6 +91,13 @@ function App() {
             path='/admin/strony-informacyjne/dodaj/:id'
             element={<NewInfoPage />}
           />
+
+          {/* GALERIES */}
+          <Route path='/admin/galerie' element={<Galery />} />
+          <Route path='/admin/galerie/dodaj/:id' element={<NewGalery />} />
+
+          {/* MOTIVATION */}
+          <Route path='/admin/motywacja' element={<Motivation />} />
         </Routes>
       </MasterTemplate>
     </Router>

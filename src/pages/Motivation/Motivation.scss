@@ -1,0 +1,157 @@
+@import '../../lib/sass/styles.scss';
+
+.new-article-container {
+  @include flexCenter(column);
+  max-width: 1200px;
+  margin: 0 50px;
+  box-sizing: border-box;
+
+  .images-section {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .header-container-margin {
+    margin-bottom: 30px;
+  }
+
+  .header-container {
+    @include flexCenter(row);
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 30px;
+
+    p {
+      text-align: center;
+      font-size: 22px;
+    }
+
+    .back-btn {
+      text-align: center;
+      color: white;
+      background-color: #5cb25d;
+
+      &:hover {
+        background-color: white;
+        color: #5cb25d;
+        border: 3px #5cb25d solid;
+      }
+    }
+  }
+
+  .buttons {
+    @include flexCenter(row);
+    justify-content: space-between;
+    width: 100%;
+    margin: 50px 0;
+
+    .green-btns {
+      @include flexCenter(row);
+      justify-content: space-between;
+      width: 60%;
+
+      @include media('>=desktop') {
+        width: 55%;
+      }
+
+      button {
+        background-color: #5cb25d;
+        margin-right: 10px;
+
+        &:hover {
+          background-color: white;
+          color: #5cb25d;
+          cursor: pointer;
+          border: 3px #5cb25d solid;
+          box-sizing: border-box;
+          transition: all 0.2s linear;
+        }
+      }
+    }
+  }
+
+  .special-btn {
+    justify-content: flex-end;
+    .green-btns {
+      justify-content: flex-end;
+    }
+  }
+
+  .input-container {
+    @include flexCenter(row);
+    justify-content: space-between;
+    width: 100%;
+    margin: 30px 0;
+
+    .select {
+      width: 300px;
+      height: 44px;
+      border-radius: 5px;
+      filter: drop-shadow(-2px 2px 4px rgba(0, 0, 0, 0.25));
+      border: none;
+    }
+  }
+
+  .tags-container {
+    @include flexCenter(column);
+    width: 100%;
+    height: auto;
+    background-color: #effded;
+    border: 1px #5cb25d solid;
+    box-sizing: border-box;
+    padding-bottom: 30px;
+
+    h3 {
+      @include flexCenter(row);
+      font-size: 24px;
+      font-weight: 600;
+      padding: 5px 0;
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px #5cb25d solid;
+      box-sizing: border-box;
+    }
+
+    input {
+      width: 400px;
+      height: 24px;
+      font-size: 16px;
+      border-radius: 5px;
+      filter: drop-shadow(-2px 2px 4px rgba(0, 0, 0, 0.25));
+      border: none;
+      margin: 10px 0;
+    }
+
+    .tags {
+      @include flexCenter(row);
+      justify-content: flex-start;
+    }
+  }
+}
+
+.text-editor {
+  width: 100%;
+  margin: 30px 0;
+
+  p {
+    margin-bottom: 20px;
+  }
+}
+
+.empty-field-warning {
+  width: 100%;
+  height: auto;
+  font-size: $med-font;
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.preview {
+  width: 100%;
+}

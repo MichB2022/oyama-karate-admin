@@ -75,25 +75,25 @@ const Preschoolers = () => {
     data.append('content', preschoolerText ? preschoolerText : '');
 
     if (firstImg[0].imgUrl) {
-      data.append('firstImg', firstImg[0].imgUrl);
+      data.append('firstImgUrl', firstImg[0].imgUrl);
     } else if (firstImg[0].img) {
       data.append('firstImg', firstImg[0].img);
     } else {
-      data.append('firstImg', '');
+      data.append('firstImgUrl', '');
     }
     if (secondImg[0].imgUrl) {
-      data.append('secondImg', secondImg[0].imgUrl);
+      data.append('secondImgUrl', secondImg[0].imgUrl);
     } else if (secondImg[0].img) {
       data.append('secondImg', secondImg[0].img);
     } else {
-      data.append('secondImg', '');
+      data.append('secondImgUrl', '');
     }
     if (thirdImg[0].imgUrl) {
-      data.append('thirdImg', thirdImg[0].imgUrl);
+      data.append('thirdImgUrl', thirdImg[0].imgUrl);
     } else if (thirdImg[0].img) {
       data.append('thirdImg', thirdImg[0].img);
     } else {
-      data.append('thirdImg', '');
+      data.append('thirdImgUrl', '');
     }
 
     data.append('firstImgAlt', firstImgAlt ? firstImgAlt.value : '');

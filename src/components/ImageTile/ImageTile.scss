@@ -1,0 +1,12 @@
+.image-tile {
+  width: 200px;
+  height: 200px;
+  margin-top: 30px;
+  border: 1px solid gray;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
