@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import LeftArrow from '../../components/Icons/LeftArrow';
 import RightArrow from '../../components/Icons/RightArrow';
 import Loader from '../../components/Loader/Loader';
-import { httpRequest } from '../../utils/requests';
+import MasterTemplate from '../../templates/MasterTemplate/MasterTemplate';
+import { httpRequest, redirect } from '../../utils/requests';
 import './Articles.scss';
 import ArticleRow from './sub-components/ArticleRow/ArticleRow';
 
@@ -30,6 +31,14 @@ const Articles = () => {
     setArticlesData({ articles: articlesResult.data.data });
     setPagination(articlesResult.data.pagination);
   };
+
+  useEffect(async () => {
+    try {
+      const status = await httpRequest('GET', '/auth/authorize');
+    } catch (e) {
+      redirect('/');
+    }
+  }, []);
 
   useEffect(async () => {
     await articleRequest();
@@ -82,7 +91,7 @@ const Articles = () => {
   };
 
   return (
-    <>
+    <MasterTemplate>
       <main>
         <div className='news-container'>
           <h1>Aktualności</h1>
@@ -154,7 +163,7 @@ const Articles = () => {
           )}
         </div>
       </main>
-    </>
+    </MasterTemplate>
   );
 };
 

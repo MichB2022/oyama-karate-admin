@@ -2,6 +2,7 @@ import axios from 'axios';
 import { API_URL } from '../configs/api';
 
 export const httpRequest = async (method, url, data) => {
+  axios.defaults.withCredentials = true;
   switch (method) {
     case 'GET':
       return await axios.get(`${API_URL}${url}`);

@@ -5,6 +5,7 @@ import InfoModalPopup from '../../../../components/InfoModalPopup/InfoModalPopup
 import Input from '../../../../components/Input/Input';
 import Loader from '../../../../components/Loader/Loader';
 import TextEditor from '../../../../components/TextEditor/TextEditor';
+import MasterTemplate from '../../../../templates/MasterTemplate/MasterTemplate';
 import { httpRequest, redirect } from '../../../../utils/requests';
 
 import './NewScheduleRow.scss';
@@ -16,6 +17,14 @@ const NewScheduleRow = ({ isNewRow }) => {
   const [scheduleText, setScheduleText] = useState('');
   const [instructorText, setInstructorText] = useState('');
   const [helpersText, setHelpersText] = useState('');
+
+  useEffect(async () => {
+    try {
+      const status = await httpRequest('GET', '/auth/authorize');
+    } catch (e) {
+      redirect('/');
+    }
+  }, []);
 
   useEffect(async () => {
     if (id) {
@@ -48,7 +57,7 @@ const NewScheduleRow = ({ isNewRow }) => {
   };
 
   return (
-    <>
+    <MasterTemplate>
       {louder && <Loader />}
       {!louder && (
         <main>
@@ -112,7 +121,7 @@ const NewScheduleRow = ({ isNewRow }) => {
           </div>
         </main>
       )}
-    </>
+    </MasterTemplate>
   );
 };
 

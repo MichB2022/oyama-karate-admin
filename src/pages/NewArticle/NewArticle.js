@@ -13,6 +13,7 @@ import { httpRequest, redirect } from '../../utils/requests';
 import InputTextArea from '../../components/InputTextArea/InputTextArea';
 import 'react-quill/dist/quill.core.css';
 import InfoModalPopup from '../../components/InfoModalPopup/InfoModalPopup';
+import MasterTemplate from '../../templates/MasterTemplate/MasterTemplate';
 
 const NewArticle = () => {
   const [ReloadVar, setReloadVar] = useState(false);
@@ -26,6 +27,14 @@ const NewArticle = () => {
   const [articleText, setArticleText] = useState(null);
   const [bigImg, setBigImg] = useState([{ file: { path: '' }, alt: '' }]);
   const [smallImg, setSmallImg] = useState([{ file: { path: '' }, alt: '' }]);
+
+  useEffect(async () => {
+    try {
+      const status = await httpRequest('GET', '/auth/authorize');
+    } catch (e) {
+      redirect('/');
+    }
+  }, []);
 
   useEffect(async () => {
     const categoriesResult = await axios.get(`${API_URL}/categories`);
@@ -126,7 +135,7 @@ const NewArticle = () => {
   };
 
   return (
-    <>
+    <MasterTemplate>
       {louder && <Loader />}
       {!louder && (
         <main>
@@ -272,7 +281,7 @@ const NewArticle = () => {
           </div>
         </main>
       )}
-    </>
+    </MasterTemplate>
   );
 };
 

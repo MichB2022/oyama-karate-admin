@@ -8,6 +8,7 @@ import InputFile from '../../../../components/InputFile/InputFile';
 import Input from '../../../../components/Input/Input';
 import TextEditor from '../../../../components/TextEditor/TextEditor';
 import InfoModalPopup from '../../../../components/InfoModalPopup/InfoModalPopup';
+import MasterTemplate from '../../../../templates/MasterTemplate/MasterTemplate';
 
 const NewEvent = () => {
   const { id } = useParams();
@@ -16,6 +17,14 @@ const NewEvent = () => {
   const [eventCategories, setEventCategories] = useState([]);
   const [description, setDescription] = useState('');
   const [img, setImg] = useState([{ file: { path: '' }, alt: '' }]);
+
+  useEffect(async () => {
+    try {
+      const status = await httpRequest('GET', '/auth/authorize');
+    } catch (e) {
+      redirect('/');
+    }
+  }, []);
 
   useEffect(async () => {
     const categories = await httpRequest('GET', '/eventcategories');
@@ -79,7 +88,7 @@ const NewEvent = () => {
   };
 
   return (
-    <>
+    <MasterTemplate>
       {loader && <Loader />}
       {!loader && (
         <main>
@@ -173,7 +182,7 @@ const NewEvent = () => {
           </div>
         </main>
       )}
-    </>
+    </MasterTemplate>
   );
 };
 

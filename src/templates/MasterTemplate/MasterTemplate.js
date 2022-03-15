@@ -6,12 +6,14 @@ import './MasterTemplate.scss';
 const MasterTemplate = ({ children }) => {
   return (
     <>
-      <Nav />
-      <div className='page-content'>
-        <Aside />
+      <>
+        <Nav />
+        <div className='page-content'>
+          <Aside />
 
-        {children}
-      </div>
+          {children}
+        </div>
+      </>
     </>
   );
 };

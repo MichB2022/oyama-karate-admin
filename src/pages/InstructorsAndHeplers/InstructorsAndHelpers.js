@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PlusIcon from '../../components/Icons/PlusIcon';
 import Loader from '../../components/Loader/Loader';
-import { httpRequest } from '../../utils/requests';
+import MasterTemplate from '../../templates/MasterTemplate/MasterTemplate';
+import { httpRequest, redirect } from '../../utils/requests';
 import './InstructorsAndHelpers.scss';
 import InstructorsAndHelpersTile from './sub-components/InstructorsAndHelpersTile/InstructorsAndHelpersTile';
 
@@ -13,13 +14,21 @@ const InstructorsAndHelpers = () => {
   );
 
   useEffect(async () => {
+    try {
+      const status = await httpRequest('GET', '/auth/authorize');
+    } catch (e) {
+      redirect('/');
+    }
+  }, []);
+
+  useEffect(async () => {
     const data = await httpRequest('GET', '/instructors');
     setInstructorsAndHelpersData(data.data.data);
     setLoader(false);
   }, []);
 
   return (
-    <>
+    <MasterTemplate>
       {loader && <Loader />}
       {!loader && (
         <main>
@@ -40,7 +49,7 @@ const InstructorsAndHelpers = () => {
           </div>
         </main>
       )}
-    </>
+    </MasterTemplate>
   );
 };
 

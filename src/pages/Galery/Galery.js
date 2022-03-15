@@ -5,10 +5,19 @@ import Loader from '../../components/Loader/Loader';
 import { httpRequest, redirect } from '../../utils/requests';
 import GaleryTile from './sub-components/GaleryTile/GaleryTile';
 import './Galery.scss';
+import MasterTemplate from '../../templates/MasterTemplate/MasterTemplate';
 
 const Galery = () => {
   const [loader, setLoader] = useState(true);
   const [galeryData, setGaleryData] = useState([]);
+
+  useEffect(async () => {
+    try {
+      const status = await httpRequest('GET', '/auth/authorize');
+    } catch (e) {
+      redirect('/');
+    }
+  }, []);
 
   useEffect(async () => {
     const data = await httpRequest('GET', '/galery');
@@ -25,7 +34,7 @@ const Galery = () => {
   };
 
   return (
-    <>
+    <MasterTemplate>
       {loader && <Loader />}
       {!loader && (
         <main>
@@ -47,7 +56,7 @@ const Galery = () => {
           </div>
         </main>
       )}
-    </>
+    </MasterTemplate>
   );
 };
 

@@ -29,6 +29,12 @@
     .settings,
     .log-out {
       @include flexCenter(row);
+
+      &:hover {
+        cursor: pointer;
+        color: black;
+        transition: 0.3s;
+      }
     }
   }
 }

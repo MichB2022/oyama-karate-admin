@@ -1,8 +1,14 @@
 import React from 'react';
 import './Nav.scss';
 import { FiSettings, FiLogOut } from 'react-icons/fi';
+import { httpRequest, redirect } from '../../../../utils/requests';
 
 const Nav = () => {
+  const handleLogoutClick = async () => {
+    await httpRequest('GET', '/auth/logout');
+    redirect('/');
+  };
+
   return (
     <>
       <nav className='nav'>
@@ -13,7 +19,7 @@ const Nav = () => {
             ustawienia
             <FiSettings className='margin' />
           </div>
-          <div className='log-out'>
+          <div className='log-out' onClick={handleLogoutClick}>
             wyloguj się
             <FiLogOut className='margin' />
           </div>

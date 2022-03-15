@@ -19,87 +19,87 @@ import NewInfoPage from './pages/InfoPages/sub-components/NewInfoPage/NewInfoPag
 import Galery from './pages/Galery/Galery';
 import NewGalery from './pages/Galery/sub-components/NewGalery/NewGalery';
 import Motivation from './pages/Motivation/Motivation';
+import LoginPage from './pages/LoginPage/LoginPage';
 
 function App() {
   return (
     <Router>
-      <MasterTemplate>
-        <Routes>
-          <Route path='/admin' element={<HomePage />} />
+      <Routes>
+        <Route path='/admin' element={<LoginPage />} />
+        <Route path='/*' element={<LoginPage />} />
 
-          {/* ARTICLES */}
-          <Route path='/admin/aktualnosci' element={<Articles />} />
-          <Route path='/admin/aktualnosci/nowy' element={<NewArticle />} />
-          <Route path='/admin/aktualnosci/nowy/:id' element={<NewArticle />} />
+        {/* HOMEPAGE */}
+        <Route path='/admin/glowna' element={<HomePage />} />
 
-          {/* SECTIONS */}
-          <Route path='/admin/sekcje' element={<Sections />} />
-          <Route path='/admin/sekcje/dodaj' element={<NewSection />} />
-          <Route path='/admin/sekcje/dodaj/:id' element={<NewSection />} />
+        {/* ARTICLES */}
+        <Route path='/admin/aktualnosci' element={<Articles />} />
+        <Route path='/admin/aktualnosci/nowy' element={<NewArticle />} />
+        <Route path='/admin/aktualnosci/nowy/:id' element={<NewArticle />} />
 
-          {/* PRESCHOOLERS */}
-          <Route path='/admin/przedszkolaki' element={<Preschoolers />} />
+        {/* SECTIONS */}
+        <Route path='/admin/sekcje' element={<Sections />} />
+        <Route path='/admin/sekcje/dodaj' element={<NewSection />} />
+        <Route path='/admin/sekcje/dodaj/:id' element={<NewSection />} />
 
-          {/* CALENDAR */}
-          <Route path='/admin/kalendarz' element={<Calendar />} />
-          <Route
-            path='/admin/kalendarz/nowe-wydarzenie'
-            element={<NewEvent />}
-          />
-          <Route
-            path='/admin/kalendarz/nowe-wydarzenie/:id'
-            element={<NewEvent />}
-          />
+        {/* PRESCHOOLERS */}
+        <Route path='/admin/przedszkolaki' element={<Preschoolers />} />
 
-          {/* SCHEDULE */}
-          <Route path='/admin/harmonogram' element={<Schedule />} />
-          <Route path='/admin/harmonogram/dodaj' element={<NewGroup />} />
-          <Route
-            path='/admin/harmonogram/dodaj/:groupId'
-            element={<NewGroup />}
-          />
-          <Route
-            path='/admin/harmonogram/dodaj/wiersz/:groupId'
-            element={<NewScheduleRow isNewRow={true} />}
-          />
-          <Route
-            path='/admin/harmonogram/dodaj/wiersz/:groupId/:id'
-            element={<NewScheduleRow />}
-          />
+        {/* CALENDAR */}
+        <Route path='/admin/kalendarz' element={<Calendar />} />
+        <Route path='/admin/kalendarz/nowe-wydarzenie' element={<NewEvent />} />
+        <Route
+          path='/admin/kalendarz/nowe-wydarzenie/:id'
+          element={<NewEvent />}
+        />
 
-          {/* INSTRUCTORS AND HELPERS */}
-          <Route
-            path='/admin/instruktorzy-i-pomocnicy'
-            element={<InstructorsAndHelpers />}
-          />
-          <Route
-            path='/admin/instruktorzy-i-pomocnicy/dodaj'
-            element={<NewPerson />}
-          />
-          <Route
-            path='/admin/instruktorzy-i-pomocnicy/dodaj/:id'
-            element={<NewPerson />}
-          />
+        {/* SCHEDULE */}
+        <Route path='/admin/harmonogram' element={<Schedule />} />
+        <Route path='/admin/harmonogram/dodaj' element={<NewGroup />} />
+        <Route
+          path='/admin/harmonogram/dodaj/:groupId'
+          element={<NewGroup />}
+        />
+        <Route
+          path='/admin/harmonogram/dodaj/wiersz/:groupId'
+          element={<NewScheduleRow isNewRow={true} />}
+        />
+        <Route
+          path='/admin/harmonogram/dodaj/wiersz/:groupId/:id'
+          element={<NewScheduleRow />}
+        />
 
-          {/* INFO PAGES */}
-          <Route path='/admin/strony-informacyjne' element={<InfoPages />} />
-          <Route
-            path='/admin/strony-informacyjne/dodaj'
-            element={<NewInfoPage />}
-          />
-          <Route
-            path='/admin/strony-informacyjne/dodaj/:id'
-            element={<NewInfoPage />}
-          />
+        {/* INSTRUCTORS AND HELPERS */}
+        <Route
+          path='/admin/instruktorzy-i-pomocnicy'
+          element={<InstructorsAndHelpers />}
+        />
+        <Route
+          path='/admin/instruktorzy-i-pomocnicy/dodaj'
+          element={<NewPerson />}
+        />
+        <Route
+          path='/admin/instruktorzy-i-pomocnicy/dodaj/:id'
+          element={<NewPerson />}
+        />
 
-          {/* GALERIES */}
-          <Route path='/admin/galerie' element={<Galery />} />
-          <Route path='/admin/galerie/dodaj/:id' element={<NewGalery />} />
+        {/* INFO PAGES */}
+        <Route path='/admin/strony-informacyjne' element={<InfoPages />} />
+        <Route
+          path='/admin/strony-informacyjne/dodaj'
+          element={<NewInfoPage />}
+        />
+        <Route
+          path='/admin/strony-informacyjne/dodaj/:id'
+          element={<NewInfoPage />}
+        />
 
-          {/* MOTIVATION */}
-          <Route path='/admin/motywacja' element={<Motivation />} />
-        </Routes>
-      </MasterTemplate>
+        {/* GALERIES */}
+        <Route path='/admin/galerie' element={<Galery />} />
+        <Route path='/admin/galerie/dodaj/:id' element={<NewGalery />} />
+
+        {/* MOTIVATION */}
+        <Route path='/admin/motywacja' element={<Motivation />} />
+      </Routes>
     </Router>
   );
 }

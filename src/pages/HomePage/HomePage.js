@@ -7,7 +7,8 @@ import Input from '../../components/Input/Input';
 import InputFile from '../../components/InputFile/InputFile';
 import Loader from '../../components/Loader/Loader';
 import { API_URL } from '../../configs/api';
-import { httpRequest } from '../../utils/requests';
+import MasterTemplate from '../../templates/MasterTemplate/MasterTemplate';
+import { httpRequest, redirect } from '../../utils/requests';
 import './HomePage.scss';
 
 const HomePage = () => {
@@ -19,6 +20,14 @@ const HomePage = () => {
   const getElById = (id) => {
     return document.getElementById(`${id}`);
   };
+
+  useEffect(async () => {
+    try {
+      const status = await httpRequest('GET', '/auth/authorize');
+    } catch (e) {
+      redirect('/');
+    }
+  }, []);
 
   useEffect(async () => {
     const data = await httpRequest('GET', '/homepage');
@@ -62,7 +71,7 @@ const HomePage = () => {
   };
 
   return (
-    <>
+    <MasterTemplate>
       {louder && <Loader />}
       {!louder && (
         <main>
@@ -116,7 +125,7 @@ const HomePage = () => {
           </div>
         </main>
       )}
-    </>
+    </MasterTemplate>
   );
 };
 

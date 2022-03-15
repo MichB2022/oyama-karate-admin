@@ -6,7 +6,8 @@ import Input from '../../components/Input/Input';
 import InputFile from '../../components/InputFile/InputFile';
 import Loader from '../../components/Loader/Loader';
 import TextEditor from '../../components/TextEditor/TextEditor';
-import { httpRequest } from '../../utils/requests';
+import MasterTemplate from '../../templates/MasterTemplate/MasterTemplate';
+import { httpRequest, redirect } from '../../utils/requests';
 import './Preschoolers.scss';
 
 const Preschoolers = () => {
@@ -16,6 +17,14 @@ const Preschoolers = () => {
   const [secondImg, setSecondImg] = useState([{ file: { path: '' }, alt: '' }]);
   const [thirdImg, setThirdImg] = useState([{ file: { path: '' }, alt: '' }]);
   const [preschoolerText, setPreschoolerText] = useState('');
+
+  useEffect(async () => {
+    try {
+      const status = await httpRequest('GET', '/auth/authorize');
+    } catch (e) {
+      redirect('/');
+    }
+  }, []);
 
   useEffect(async () => {
     const preschoolerData = await httpRequest('GET', '/preschooler');
@@ -104,7 +113,7 @@ const Preschoolers = () => {
   };
 
   return (
-    <>
+    <MasterTemplate>
       {louder && <Loader />}
       {!louder && (
         <main>
@@ -190,7 +199,7 @@ const Preschoolers = () => {
           </div>
         </main>
       )}
-    </>
+    </MasterTemplate>
   );
 };
 

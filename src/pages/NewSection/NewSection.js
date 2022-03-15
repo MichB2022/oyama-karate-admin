@@ -9,6 +9,7 @@ import InputTextArea from '../../components/InputTextArea/InputTextArea';
 import Loader from '../../components/Loader/Loader';
 import ModalPopup from '../../components/ModalPopup/ModalPopup';
 import TextEditor from '../../components/TextEditor/TextEditor';
+import MasterTemplate from '../../templates/MasterTemplate/MasterTemplate';
 import { httpRequest, redirect } from '../../utils/requests';
 import './NewSection.scss';
 import Group from './sub-components/Group';
@@ -25,6 +26,14 @@ const NewSection = () => {
   const [deletVar, setDeleteVar] = useState(false);
   const [bigImg, setBigImg] = useState([{ file: { path: '' }, alt: '' }]);
   const [sectionDesc, setSectionDesc] = useState('');
+
+  useEffect(async () => {
+    try {
+      const status = await httpRequest('GET', '/auth/authorize');
+    } catch (e) {
+      redirect('/');
+    }
+  }, []);
 
   useEffect(async () => {
     if (id) {
@@ -138,7 +147,7 @@ const NewSection = () => {
   }
 
   return (
-    <>
+    <MasterTemplate>
       {loader && <Loader />}
       {!loader && (
         <main>
@@ -272,7 +281,7 @@ const NewSection = () => {
           </div>
         </main>
       )}
-    </>
+    </MasterTemplate>
   );
 };
 

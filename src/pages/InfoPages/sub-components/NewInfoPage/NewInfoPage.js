@@ -6,6 +6,7 @@ import Input from '../../../../components/Input/Input';
 import Loader from '../../../../components/Loader/Loader';
 import ModalPopup from '../../../../components/ModalPopup/ModalPopup';
 import TextEditor from '../../../../components/TextEditor/TextEditor';
+import MasterTemplate from '../../../../templates/MasterTemplate/MasterTemplate';
 import { httpRequest, redirect } from '../../../../utils/requests';
 import './NewInfoPage.scss';
 
@@ -14,6 +15,14 @@ const NewInfoPage = () => {
   const [loader, setLoader] = useState(true);
   const [currentInfoPage, setCurrentInfoPage] = useState([]);
   const [content, setContent] = useState('');
+
+  useEffect(async () => {
+    try {
+      const status = await httpRequest('GET', '/auth/authorize');
+    } catch (e) {
+      redirect('/');
+    }
+  }, []);
 
   useEffect(async () => {
     const data = await httpRequest('GET', `/infopages/${id}`);
@@ -44,7 +53,7 @@ const NewInfoPage = () => {
   };
 
   return (
-    <>
+    <MasterTemplate>
       {loader && <Loader />}
       {!loader && (
         <main>
@@ -105,7 +114,7 @@ const NewInfoPage = () => {
           </div>
         </main>
       )}
-    </>
+    </MasterTemplate>
   );
 };
 

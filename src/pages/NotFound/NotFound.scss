@@ -1,0 +1,17 @@
+@import '../../lib/sass/styles.scss';
+
+.not-found-page {
+  h1 {
+    padding: 25px 0;
+    width: 100%;
+    text-align: center;
+    font-size: $big-font;
+    font-weight: 800;
+    letter-spacing: 1px;
+
+    @include media('>=tablet-portrait') {
+      font-size: $large-font;
+      padding: 40px 0;
+    }
+  }
+}

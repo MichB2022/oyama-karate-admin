@@ -5,13 +5,22 @@ import ImageTile from '../../components/ImageTile/ImageTile';
 import InputFile from '../../components/InputFile/InputFile';
 import Loader from '../../components/Loader/Loader';
 import { API_UPLOADS_URL } from '../../configs/api';
-import { httpRequest } from '../../utils/requests';
+import MasterTemplate from '../../templates/MasterTemplate/MasterTemplate';
+import { httpRequest, redirect } from '../../utils/requests';
 import './Motivation.scss';
 
 const Motivation = () => {
   const [louder, setlouder] = useState(true);
   const [galeryData, setGaleryData] = useState({});
   const [img, setImg] = useState([{ file: { path: '' }, alt: '' }]);
+
+  useEffect(async () => {
+    try {
+      const status = await httpRequest('GET', '/auth/authorize');
+    } catch (e) {
+      redirect('/');
+    }
+  }, []);
 
   useEffect(async () => {
     const galery = await httpRequest('GET', `/motivation`);
@@ -29,7 +38,7 @@ const Motivation = () => {
   }, [img]);
 
   return (
-    <>
+    <MasterTemplate>
       {louder && <Loader />}
       {!louder && (
         <main>
@@ -63,7 +72,7 @@ const Motivation = () => {
           </div>
         </main>
       )}
-    </>
+    </MasterTemplate>
   );
 };
 

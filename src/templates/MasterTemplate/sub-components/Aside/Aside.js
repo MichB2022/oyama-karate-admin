@@ -34,7 +34,7 @@ const Aside = () => {
           <h2>PANEL ADMINISTRACYJNY</h2>
           <div className='belt'></div>
 
-          <Link to='/admin'>
+          <Link to='/admin/glowna'>
             <div className='dashboard aside-btn'>
               <DashboardIcon className='aside-btn-icon' />
               Strona główna

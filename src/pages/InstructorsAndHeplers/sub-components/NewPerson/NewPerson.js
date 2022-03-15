@@ -8,6 +8,7 @@ import InputTextArea from '../../../../components/InputTextArea/InputTextArea';
 import Loader from '../../../../components/Loader/Loader';
 import ModalPopup from '../../../../components/ModalPopup/ModalPopup';
 import TextEditor from '../../../../components/TextEditor/TextEditor';
+import MasterTemplate from '../../../../templates/MasterTemplate/MasterTemplate';
 import { httpRequest, redirect } from '../../../../utils/requests';
 import './NewPerson.scss';
 
@@ -19,6 +20,14 @@ const NewPerson = () => {
   const [img, setImg] = useState([{ file: { path: '' }, alt: '' }]);
   const [currentPerson, setCurrentPerson] = useState({});
   const [files, setFiles] = useState([]);
+
+  useEffect(async () => {
+    try {
+      const status = await httpRequest('GET', '/auth/authorize');
+    } catch (e) {
+      redirect('/');
+    }
+  }, []);
 
   useEffect(async () => {
     if (id) {
@@ -49,7 +58,6 @@ const NewPerson = () => {
   };
 
   const handleSaveBtn = async () => {
-    console.log(files);
     const name = document.getElementById('name');
     const title = document.getElementById('title');
     const description = document.getElementById('description');
@@ -86,7 +94,7 @@ const NewPerson = () => {
   }
 
   return (
-    <>
+    <MasterTemplate>
       {loader && <Loader />}
       {!loader && (
         <main>
@@ -174,7 +182,7 @@ const NewPerson = () => {
           </div>
         </main>
       )}
-    </>
+    </MasterTemplate>
   );
 };
 

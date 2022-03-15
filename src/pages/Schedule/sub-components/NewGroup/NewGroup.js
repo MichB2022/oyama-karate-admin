@@ -7,6 +7,7 @@ import RightArrow from '../../../../components/Icons/RightArrow';
 import InfoModalPopup from '../../../../components/InfoModalPopup/InfoModalPopup';
 import Loader from '../../../../components/Loader/Loader';
 import ModalPopup from '../../../../components/ModalPopup/ModalPopup';
+import MasterTemplate from '../../../../templates/MasterTemplate/MasterTemplate';
 import { httpRequest, redirect } from '../../../../utils/requests';
 import ScheduleRow from '../ScheduleRow/ScheduleRow';
 import './NewGroup.scss';
@@ -16,6 +17,14 @@ const NewGroup = () => {
   const [louder, setlouder] = useState(true);
   const [groupsData, setgroupsData] = useState({});
   const [group, setGroup] = useState({});
+
+  useEffect(async () => {
+    try {
+      const status = await httpRequest('GET', '/auth/authorize');
+    } catch (e) {
+      redirect('/');
+    }
+  }, []);
 
   useEffect(async () => {
     const group = await httpRequest('GET', `/schedule/${groupId}`);
@@ -31,7 +40,7 @@ const NewGroup = () => {
   };
 
   return (
-    <>
+    <MasterTemplate>
       {louder && <Loader />}
       {!louder && (
         <main>
@@ -90,7 +99,7 @@ const NewGroup = () => {
           </div>
         </main>
       )}
-    </>
+    </MasterTemplate>
   );
 };
 

@@ -4,10 +4,19 @@ import { httpRequest, redirect } from '../../utils/requests';
 import Loader from '../../components/Loader/Loader';
 import ScheduleTile from './sub-components/ScheduleTile/ScheduleTile';
 import PlusIcon from '../../components/Icons/PlusIcon';
+import MasterTemplate from '../../templates/MasterTemplate/MasterTemplate';
 
 const Schedule = () => {
   const [louder, setlouder] = useState(true);
   const [scheduleData, setscheduleData] = useState({});
+
+  useEffect(async () => {
+    try {
+      const status = await httpRequest('GET', '/auth/authorize');
+    } catch (e) {
+      redirect('/');
+    }
+  }, []);
 
   useEffect(async () => {
     const scheduleResponse = await httpRequest('GET', '/schedule/names');
@@ -24,7 +33,7 @@ const Schedule = () => {
   };
 
   return (
-    <>
+    <MasterTemplate>
       {louder && <Loader />}
       {!louder && (
         <main>
@@ -46,7 +55,7 @@ const Schedule = () => {
           </div>
         </main>
       )}
-    </>
+    </MasterTemplate>
   );
 };
 

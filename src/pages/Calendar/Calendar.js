@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 
 import './Calendar.scss';
 import { VscNewFile } from 'react-icons/vsc';
-import { httpRequest } from '../../utils/requests';
+import { httpRequest, redirect } from '../../utils/requests';
 import Loader from '../../components/Loader/Loader';
 import Button from '../../components/Button/Button';
 import EventRow from './subCoponents/EventRow/EventRow';
 import LeftArrow from '../../components/Icons/LeftArrow';
 import RightArrow from '../../components/Icons/RightArrow';
+import MasterTemplate from '../../templates/MasterTemplate/MasterTemplate';
 
 const PER_PAGE = 10;
 
@@ -20,6 +21,14 @@ const Calendar = () => {
   const [pagination, setPagination] = useState({});
   const [titleToFilter, setTitleToFilter] = useState(false);
   const [filteredByCategory, setFilteredByCategory] = useState('all');
+
+  useEffect(async () => {
+    try {
+      const status = await httpRequest('GET', '/auth/authorize');
+    } catch (e) {
+      redirect('/');
+    }
+  }, []);
 
   useEffect(async () => {
     await eventsRequest();
@@ -84,80 +93,85 @@ const Calendar = () => {
   };
 
   return (
-    <main>
-      <div className='admin-calendar-container'>
-        <h2 className='header-container header-container-margin'>
-          <p>Kalendarz</p>
-          <Link to='/admin/aktualnosci'>
-            <Button text={'POWRÓT (bez zapisu)'} className='back-btn' />
-          </Link>
-        </h2>
-
-        <form className='inputs-container'>
-          <div className='input-container'>
-            <label htmlFor='title'>wyszukaj po tytule: </label>
-            <input
-              type='text'
-              name='title'
-              placeholder='podaj tytuł'
-              onChange={(e) => setTitleToFilter(e.target.value)}
-            />
-          </div>
-
-          <div className='input-container'>
-            <label htmlFor='sort'>filtruj po kategorii: </label>
-            <select
-              name='sorting'
-              className='select'
-              defaultValue={'all'}
-              onChange={(e) => setFilteredByCategory(e.target.value)}
-            >
-              <option value={'all'}>-- wszystkie --</option>
-              {eventCategories.map((el) => (
-                <option value={el.id} key={el.id}>
-                  {el.name}
-                </option>
-              ))}
-            </select>
-          </div>
-        </form>
-
-        <section className='articles'>
-          <div className='headers'>
-            <h3>tytuł</h3>
-            <h3>zdjęcie</h3>
-            <h3>data rozpoczęcia</h3>
-            <h3>data zakończenia</h3>
-            <Link to='/admin/kalendarz/nowe-wydarzenie' className='new-article'>
-              <VscNewFile />
-              <p>Nowe wydarzenie</p>
+    <MasterTemplate>
+      <main>
+        <div className='admin-calendar-container'>
+          <h2 className='header-container header-container-margin'>
+            <p>Kalendarz</p>
+            <Link to='/admin/aktualnosci'>
+              <Button text={'POWRÓT (bez zapisu)'} className='back-btn' />
             </Link>
-          </div>
-          <div className='belt'></div>
-          <div className='main-articles-container'>
-            {loader && <Loader />}
-            {!loader &&
-              eventsData.map((el) => <EventRow event={el} key={el.id} />)}
-          </div>
+          </h2>
 
-          {eventsData.length > 0 && (
-            <div className='pagination-container'>
-              <div className='pagination-content'>
-                <LeftArrow
-                  className='pagination-arrow'
-                  onClick={() => changePage('LEFT')}
-                />
-                <div className='pagination'>{getPagination()}</div>
-                <RightArrow
-                  className='pagination-arrow'
-                  onClick={() => changePage('RIGHT')}
-                />
-              </div>
+          <form className='inputs-container'>
+            <div className='input-container'>
+              <label htmlFor='title'>wyszukaj po tytule: </label>
+              <input
+                type='text'
+                name='title'
+                placeholder='podaj tytuł'
+                onChange={(e) => setTitleToFilter(e.target.value)}
+              />
             </div>
-          )}
-        </section>
-      </div>
-    </main>
+
+            <div className='input-container'>
+              <label htmlFor='sort'>filtruj po kategorii: </label>
+              <select
+                name='sorting'
+                className='select'
+                defaultValue={'all'}
+                onChange={(e) => setFilteredByCategory(e.target.value)}
+              >
+                <option value={'all'}>-- wszystkie --</option>
+                {eventCategories.map((el) => (
+                  <option value={el.id} key={el.id}>
+                    {el.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </form>
+
+          <section className='articles'>
+            <div className='headers'>
+              <h3>tytuł</h3>
+              <h3>zdjęcie</h3>
+              <h3>data rozpoczęcia</h3>
+              <h3>data zakończenia</h3>
+              <Link
+                to='/admin/kalendarz/nowe-wydarzenie'
+                className='new-article'
+              >
+                <VscNewFile />
+                <p>Nowe wydarzenie</p>
+              </Link>
+            </div>
+            <div className='belt'></div>
+            <div className='main-articles-container'>
+              {loader && <Loader />}
+              {!loader &&
+                eventsData.map((el) => <EventRow event={el} key={el.id} />)}
+            </div>
+
+            {eventsData.length > 0 && (
+              <div className='pagination-container'>
+                <div className='pagination-content'>
+                  <LeftArrow
+                    className='pagination-arrow'
+                    onClick={() => changePage('LEFT')}
+                  />
+                  <div className='pagination'>{getPagination()}</div>
+                  <RightArrow
+                    className='pagination-arrow'
+                    onClick={() => changePage('RIGHT')}
+                  />
+                </div>
+              </div>
+            )}
+          </section>
+        </div>
+      </main>
+    </MasterTemplate>
   );
 };
 
