@@ -62,7 +62,6 @@ const Day = ({
               onClick={async () => {
                 await httpRequest('DELETE', `/sectionsgroup/schedule/${dayId}`);
                 setReloadVar(!ReloadVar);
-                console.log(`usunięto ${dayId} dzień`);
               }}
             >
               <p>Usuń</p>

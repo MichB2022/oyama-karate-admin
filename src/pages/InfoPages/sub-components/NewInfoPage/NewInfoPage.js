@@ -27,7 +27,7 @@ const NewInfoPage = () => {
   useEffect(async () => {
     const data = await httpRequest('GET', `/infopages/${id}`);
     setCurrentInfoPage(data.data.data);
-    setContent(data.data.data.content);
+    setContent(data.data.content);
     setLoader(false);
   }, []);
 
@@ -38,9 +38,11 @@ const NewInfoPage = () => {
 
   const handleSaveBtn = async () => {
     const title = document.getElementById('title');
+    const pageDescription = document.getElementById('pageDescription');
 
     const data = new FormData();
     data.append('title', title?.value);
+    data.append('pageDescription', pageDescription?.value);
     data.append('content', content);
 
     if (id) {
@@ -69,6 +71,13 @@ const NewInfoPage = () => {
               className={''}
               value={currentInfoPage?.title}
               id='title'
+            />
+
+            <Input
+              label={'Opis strony:'}
+              className={''}
+              value={currentInfoPage?.pageDescription || ''}
+              id='pageDescription'
             />
 
             <TextEditor

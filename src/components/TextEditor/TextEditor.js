@@ -46,6 +46,7 @@ export const TextEditor = ({
   };
 
   modules.toolbar.container = `#${toolbarId || 'toolbar'}`;
+
   modules.toolbar.handlers.image = () => {
     const input = document.createElement('input');
 
@@ -78,7 +79,13 @@ export const TextEditor = ({
         value={state.value ? state.value : text}
         onChange={handleChange}
         placeholder={placeholder}
-        modules={modules}
+        modules={{
+          ...modules,
+          toolbar: {
+            ...modules.toolbar,
+            container: `#${toolbarId || 'toolbar'}`
+          }
+        }}
         formats={formats}
       />
     </div>

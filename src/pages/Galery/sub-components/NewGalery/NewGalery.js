@@ -50,7 +50,11 @@ const NewGalery = () => {
 
   const handleSaveBtn = async () => {
     const name = document.getElementById('name');
-    const data = { name: name.value || '' };
+    const pageDescription = document.getElementById('pageDescription');
+    const data = {
+      name: name.value || '',
+      pageDescription: pageDescription.value || ''
+    };
     await httpRequest('POST', `/galery/${id}`, data);
   };
 
@@ -73,6 +77,14 @@ const NewGalery = () => {
               value={galeryData.name || ''}
               id='name'
             />
+
+            <Input
+              label={'Opis strony:'}
+              className={''}
+              value={galeryData?.pageDescription || ''}
+              id='pageDescription'
+            />
+
             <div className='buttons special-btn'>
               {
                 <InfoModalPopup

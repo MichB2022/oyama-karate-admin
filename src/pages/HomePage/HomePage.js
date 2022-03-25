@@ -51,10 +51,24 @@ const HomePage = () => {
   const handleSaveBtn = async () => {
     const text = getElById('text');
     const imgAlt = getElById('imgAlt');
+    const pageDescription = getElById('pageDescription');
+    const defaultPageDescription = getElById('defaultPageDescription');
+    const phone = getElById('phone');
+    const email = getElById('email');
 
     if (text?.value !== '' && imgAlt?.value !== '') {
       const data = new FormData();
       data.append('text', text ? text.value : '');
+      data.append('phone', phone ? phone.value : '');
+      data.append('email', email ? email.value : '');
+      data.append(
+        'pageDescription',
+        pageDescription ? pageDescription.value : ''
+      );
+      data.append(
+        'defaultPageDescription',
+        defaultPageDescription ? defaultPageDescription.value : ''
+      );
       data.append('imgAlt', imgAlt ? imgAlt.value : '');
       if (img[0].imgUrl) {
         data.append('imgUrl', img[0].imgUrl);
@@ -81,7 +95,37 @@ const HomePage = () => {
             </h2>
 
             <Input
-              label={'Napis na zdjęciu'}
+              label={'Opis strony:'}
+              className={''}
+              value={homePageData.pageDescription}
+              id='pageDescription'
+            />
+
+            <Input
+              label={
+                'Domyślny opis strony (Nasze sekcje, Harmonogram, Instruktorzy, Motywatory, Galerie):'
+              }
+              className={''}
+              value={homePageData.defaultPageDescription}
+              id='defaultPageDescription'
+            />
+
+            <Input
+              label={'Telefon:'}
+              className={''}
+              value={homePageData.phone}
+              id='phone'
+            />
+
+            <Input
+              label={'E-mail:'}
+              className={''}
+              value={homePageData.email}
+              id='email'
+            />
+
+            <Input
+              label={'Napis na zdjęciu:'}
               className={''}
               value={homePageData.text}
               id='text'

@@ -4,8 +4,6 @@ import './ImageTile.scss';
 
 const ImageTile = ({ url, alt, deletePath }) => {
   const [isDeleted, setIsDeleted] = useState(false);
-
-  console.log(url);
   return (
     <>
       {!isDeleted && (

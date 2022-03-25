@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PlusIcon from '../../components/Icons/PlusIcon';
 import Loader from '../../components/Loader/Loader';
+import UpdateOrder from '../../components/UpdateOrder/UpdateOrder';
 import MasterTemplate from '../../templates/MasterTemplate/MasterTemplate';
 import { httpRequest, redirect } from '../../utils/requests';
 import './InstructorsAndHelpers.scss';
@@ -45,6 +46,11 @@ const InstructorsAndHelpers = () => {
                   <PlusIcon className='plus' />
                 </div>
               </Link>
+
+              <UpdateOrder
+                tableName={'Instructor'}
+                data={InstructorsAndHelpersData}
+              />
             </div>
           </div>
         </main>

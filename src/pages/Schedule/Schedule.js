@@ -5,6 +5,7 @@ import Loader from '../../components/Loader/Loader';
 import ScheduleTile from './sub-components/ScheduleTile/ScheduleTile';
 import PlusIcon from '../../components/Icons/PlusIcon';
 import MasterTemplate from '../../templates/MasterTemplate/MasterTemplate';
+import UpdateOrder from '../../components/UpdateOrder/UpdateOrder';
 
 const Schedule = () => {
   const [louder, setlouder] = useState(true);
@@ -51,6 +52,12 @@ const Schedule = () => {
                   <PlusIcon className='plus' />
                 </div>
               </div>
+            </div>
+            <div style={{ width: '100%' }}>
+              <UpdateOrder
+                tableName={'Schedule'}
+                data={scheduleData.schedule}
+              />
             </div>
           </div>
         </main>

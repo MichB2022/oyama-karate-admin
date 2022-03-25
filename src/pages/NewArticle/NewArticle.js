@@ -14,6 +14,7 @@ import InputTextArea from '../../components/InputTextArea/InputTextArea';
 import 'react-quill/dist/quill.core.css';
 import InfoModalPopup from '../../components/InfoModalPopup/InfoModalPopup';
 import MasterTemplate from '../../templates/MasterTemplate/MasterTemplate';
+// const imgMagic = require('imagemagick');
 
 const NewArticle = () => {
   const [ReloadVar, setReloadVar] = useState(false);
@@ -26,7 +27,7 @@ const NewArticle = () => {
   const [isAnyFieldEmpty, setIsAnyFieldEmpty] = useState(false);
   const [articleText, setArticleText] = useState(null);
   const [bigImg, setBigImg] = useState([{ file: { path: '' }, alt: '' }]);
-  const [smallImg, setSmallImg] = useState([{ file: { path: '' }, alt: '' }]);
+  // const [smallImg, setSmallImg] = useState([{ file: { path: '' }, alt: '' }]);
 
   useEffect(async () => {
     try {
@@ -50,12 +51,12 @@ const NewArticle = () => {
           alt: articleResult.data.data.bigImgAlt
         }
       ]);
-      setSmallImg([
-        {
-          imgUrl: articleResult.data.data.smallImgUrl,
-          alt: articleResult.data.data.smallImgAlt
-        }
-      ]);
+      // setSmallImg([
+      //   {
+      //     imgUrl: articleResult.data.data.smallImgUrl,
+      //     alt: articleResult.data.data.smallImgAlt
+      //   }
+      // ]);
       setTags(
         articleResult.data.data.tags.map((el, index) => {
           return {
@@ -77,19 +78,20 @@ const NewArticle = () => {
     }
   }, [bigImg]);
 
-  useEffect(() => {
-    const smallImgAlt = document.getElementById('smallImgAlt');
-    if (smallImgAlt) {
-      smallImgAlt.value = smallImg[0].alt;
-    }
-  }, [smallImg]);
+  // useEffect(() => {
+  //   const smallImgAlt = document.getElementById('smallImgAlt');
+  //   if (smallImgAlt) {
+  //     smallImgAlt.value = smallImg[0].alt;
+  //   }
+  // }, [smallImg]);
 
   const createArticleContent = async () => {
     const title = document.getElementById('title');
     const categoryId = document.getElementById('categoryId');
     const shortenDesc = document.getElementById('shortenDesc');
+    const pageDescription = document.getElementById('pageDescription');
     const bigImgAlt = document.getElementById('bigImgAlt');
-    const smallImgAlt = document.getElementById('smallImgAlt');
+    // const smallImgAlt = document.getElementById('smallImgAlt');
 
     if (
       title?.value !== '' &&
@@ -99,25 +101,25 @@ const NewArticle = () => {
     ) {
       const data = new FormData();
       data.append('title', title ? title.value : '');
+      data.append(
+        'pageDescription',
+        pageDescription ? pageDescription.value : ''
+      );
       data.append('category_id', categoryId ? categoryId.value : '');
       data.append('text', articleText ? articleText : '');
       data.append('shortenDesc', shortenDesc ? shortenDesc.value : '');
       if (bigImg[0].imgUrl) {
         data.append('bigImgUrl', bigImg[0].imgUrl);
+        // data.append('smallImgUrl', smallImg[0].imgUrl);
       } else if (bigImg[0].img) {
         data.append('bigImg', bigImg[0].img);
       } else {
         data.append('bigImgUrl', '');
+        // data.append('smallImgUrl', '');
       }
-      if (smallImg[0].imgUrl) {
-        data.append('smallImgUrl', smallImg[0].imgUrl);
-      } else if (smallImg[0].img) {
-        data.append('smallImg', smallImg[0].img);
-      } else {
-        data.append('smallImgUrl', '');
-      }
+
       data.append('bigImgAlt', bigImgAlt ? bigImgAlt.value : '');
-      data.append('smallImgAlt', smallImgAlt ? smallImgAlt.value : '');
+      // data.append('smallImgAlt', bigImgAlt ? `${bigImgAlt.value}-small` : '');
       data.append(
         'tags',
         tags.map((tag) => (tag = tag.name))
@@ -152,8 +154,14 @@ const NewArticle = () => {
               value={article?.title || ''}
               id='title'
             />
+            <Input
+              label={'Opis strony:'}
+              className={''}
+              value={article?.pageDescription || ''}
+              id='pageDescription'
+            />
             <InputFile
-              label={'Duże zdjęcie:'}
+              label={'Zdjęcie:'}
               className={''}
               id='bigImgUrl'
               value={bigImg[0].img}
@@ -163,12 +171,12 @@ const NewArticle = () => {
             />
 
             <Input
-              label={'Alt do dużego zdjęcia:'}
+              label={'Alt zdjęcia:'}
               className={''}
               value={bigImg[0].alt}
               id='bigImgAlt'
             />
-            <InputFile
+            {/* <InputFile
               label={'Małe zdjęcie:'}
               className={''}
               id='smallImgUrl'
@@ -182,7 +190,7 @@ const NewArticle = () => {
               className={''}
               value={smallImg[0].alt}
               id='smallImgAlt'
-            />
+            /> */}
 
             <form className='input-container'>
               <label htmlFor='sort'>Wybierz kategorie artykulu: </label>

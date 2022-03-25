@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PlusIcon from '../../components/Icons/PlusIcon';
 import Loader from '../../components/Loader/Loader';
+import UpdateOrder from '../../components/UpdateOrder/UpdateOrder';
 import MasterTemplate from '../../templates/MasterTemplate/MasterTemplate';
 import { httpRequest, redirect } from '../../utils/requests';
 import './Sections.scss';
@@ -43,6 +44,9 @@ const Sections = () => {
                   <PlusIcon className='plus' />
                 </div>
               </Link>
+            </div>
+            <div style={{ width: '100%' }}>
+              <UpdateOrder tableName={'Sections'} data={labelsData} />
             </div>
           </div>
         </main>

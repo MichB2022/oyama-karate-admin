@@ -77,10 +77,15 @@ const Preschoolers = () => {
     const firstImgAlt = document.getElementById('firstImgAlt');
     const secondImgAlt = document.getElementById('secondImgAlt');
     const thirdImgAlt = document.getElementById('thirdImgAlt');
+    const pageDescription = document.getElementById('pageDescription');
 
     const data = new FormData();
 
     data.append('title', title ? title.value : '');
+    data.append(
+      'pageDescription',
+      pageDescription ? pageDescription.value : ''
+    );
     data.append('content', preschoolerText ? preschoolerText : '');
 
     if (firstImg[0].imgUrl) {
@@ -127,6 +132,13 @@ const Preschoolers = () => {
               className={''}
               value={preschoolersData.title}
               id='title'
+            />
+
+            <Input
+              label={'Opis strony:'}
+              className={''}
+              value={preschoolersData?.pageDescription || ''}
+              id='pageDescription'
             />
 
             <InputFile

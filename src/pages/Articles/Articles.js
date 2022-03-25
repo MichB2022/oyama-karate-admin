@@ -9,7 +9,7 @@ import { httpRequest, redirect } from '../../utils/requests';
 import './Articles.scss';
 import ArticleRow from './sub-components/ArticleRow/ArticleRow';
 
-const PER_PAGE = 8;
+const PER_PAGE = 10;
 
 const Articles = () => {
   const [articlesData, setArticlesData] = useState({});

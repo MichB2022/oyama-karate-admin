@@ -37,7 +37,7 @@ const LoginPage = () => {
               <label htmlFor='password'>Hasło</label>
               <input
                 id='password'
-                type='text'
+                type='password'
                 name='password'
                 placeholder='Podaj swoje hasło'
               />

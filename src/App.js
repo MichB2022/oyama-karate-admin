@@ -20,6 +20,7 @@ import Galery from './pages/Galery/Galery';
 import NewGalery from './pages/Galery/sub-components/NewGalery/NewGalery';
 import Motivation from './pages/Motivation/Motivation';
 import LoginPage from './pages/LoginPage/LoginPage';
+import Settings from './pages/Settings/Settings';
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
       <Routes>
         <Route path='/admin' element={<LoginPage />} />
         <Route path='/*' element={<LoginPage />} />
+
+        {/* SETTINGS */}
+        <Route path='/admin/ustawienia' element={<Settings />} />
 
         {/* HOMEPAGE */}
         <Route path='/admin/glowna' element={<HomePage />} />

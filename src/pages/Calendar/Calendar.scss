@@ -6,6 +6,21 @@
   margin: 0 50px;
   box-sizing: border-box;
 
+  .special-btn {
+    justify-content: flex-end;
+    .green-btns {
+      justify-content: flex-end;
+    }
+  }
+
+  .special-btn-update {
+    justify-content: flex-end;
+    margin: 25px 0 70px 0;
+    .green-btns {
+      justify-content: flex-end;
+    }
+  }
+
   .header-container-margin {
     margin-bottom: 30px;
   }
