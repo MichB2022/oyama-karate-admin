@@ -9,7 +9,12 @@ export const httpRequest = async (method, url, data) => {
     case 'PUT':
       return await axios.put(`${API_URL}${url}`, data);
     case 'POST':
-      return await axios.post(`${API_URL}${url}`, data);
+      return await axios(`${API_URL}${url}`, {
+        method: 'post',
+        data: someJsonData,
+        withCredentials: true
+      });
+    // return await axios.post(`${API_URL}${url}`, data, withCredentials: true);
     case 'DELETE':
       return await axios.delete(`${API_URL}${url}`);
     default:
