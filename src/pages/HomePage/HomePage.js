@@ -25,7 +25,7 @@ const HomePage = () => {
     try {
       const status = await httpRequest('GET', '/auth/authorize');
     } catch (e) {
-      redirect('/');
+      // redirect('/');
     }
   }, []);
 
