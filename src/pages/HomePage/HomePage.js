@@ -23,7 +23,9 @@ const HomePage = () => {
 
   useEffect(async () => {
     try {
-      const status = await httpRequest('GET', '/auth/authorize');
+      const status = await httpRequest('GET', '/auth/authorize', {
+        withCredentials: true
+      });
     } catch (e) {
       redirect('/');
     }
