@@ -74,7 +74,7 @@ const Settings = () => {
                 type='password'
                 name='password'
                 id='password'
-                placeholder='Obecne hasło'
+                placeholder='Nowe hasło'
               />
             </div>
             <div className='input-container'>
@@ -83,7 +83,7 @@ const Settings = () => {
                 type='password'
                 name='repPassword'
                 id='repPassword'
-                placeholder='Powtórz obecne hasło'
+                placeholder='Powtórz nowe hasło'
               />
             </div>
           </form>
