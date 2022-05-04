@@ -102,12 +102,6 @@ const NewInfoPage = () => {
                   text='Zmiany zostały zapisane'
                 />
               }
-              <div className='green-btns'>
-                <Button text={'ZAPISZ ZMIANY'} onclick={handleSaveBtn} />
-                <Link to='/admin/strony-informacyjne'>
-                  <Button text={'POWRÓT (bez zapisu)'} />
-                </Link>
-              </div>
               {id && (
                 <ModalPopup
                   trigger={

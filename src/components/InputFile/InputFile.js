@@ -152,6 +152,8 @@ const InputFile = ({
           <input {...getInputProps()} />
           <p>Przeciągnij zdjęcie lub kliknij, aby dodać</p>
           <em>(Tylko pliki typu *.jpeg lub *.png lub *.webp)</em>
+          <em>(Zdjęcia powinny być w proporcji 16:9 dla pionowych</em>
+          <em>lub 4:3 dla poziomych)</em>
         </div>
         {!withoutThumbs && <aside style={thumbsContainer}>{thumbs}</aside>}
       </div>
